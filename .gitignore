@@ -1,10 +1,15 @@
+.DS_Store
+.vscode
+
 # Prerequisites
 *.d
+.deps/
 
 # Compiled Object files
 *.slo
 *.lo
 *.o
+.objs/
 *.obj
 
 # Precompiled Headers
@@ -30,3 +35,5 @@
 *.exe
 *.out
 *.app
+bin/
+megaphone
