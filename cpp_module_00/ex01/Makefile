@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpeset-c <cpeset-c@student.42barce>        +#+  +:+       +#+         #
+#    By: cpeset-c <cpeset-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2023/04/28 13:57:45 by cpeset-c         ###   ########.fr        #
+#    Updated: 2023/04/30 20:44:00 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYSTEM	:= $(shell uname -s)
 
 # -=-=-=-=-	NAME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-NAME    	:= megaphone
+NAME    	:= phonebook
 
 MKFL		:= Makefile
 
@@ -39,7 +39,6 @@ WHITE		:= \033[0;97m
 
 INC_DIR	:= inc/
 SRC_DIR	:= srcs/
-UTL_DIR	:= utils/
 
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
@@ -92,12 +91,10 @@ endif
 INCLUDE	:= -I./$(INC_DIR)
 
 SRC_FLS	:= Contact.cpp \
-		Phonebook.cpp
-
-UTL_FLS	:= utils.cpp
+		PhoneBook.cpp \
+		main.cpp
 
 SRCS	= $(addprefix $(SRC_DIR), $(SRC_FLS))
-SRCS	= $(addprefix $(UTL_DIR), $(UTL_FLS))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))
