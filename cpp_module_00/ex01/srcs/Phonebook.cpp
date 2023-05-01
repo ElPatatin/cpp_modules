@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:50:18 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/04/30 21:08:06 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:42:23 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	PhoneBook::searchContacts()
     	std::cout << idx;
 		
 		this->contactList[idx - 1].printContact();
+
 	} else {
 		std::cout << "Invalid ID. Please try again." << std::endl;
 	}
