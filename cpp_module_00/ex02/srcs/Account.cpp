@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:48:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/05/01 15:58:18 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:45:04 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ bool Account::makeWithdrawal(int withdrawal)
 {
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:";
+
 	if (_amount >= withdrawal)
 	{
 		_amount -= withdrawal;
@@ -86,9 +87,7 @@ bool Account::makeWithdrawal(int withdrawal)
 		_totalNbWithdrawals++;
 		std::cout << withdrawal << ";amount:" << _amount << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
 		return true;
-	}
-	else
-	{
+	} else {
 		std::cout << "refused" << std::endl;
 		return false;
 	}
