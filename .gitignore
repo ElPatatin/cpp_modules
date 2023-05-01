@@ -1,5 +1,6 @@
 .DS_Store
 .vscode
+*.DSYM
 
 # Prerequisites
 *.d
@@ -38,3 +39,4 @@
 bin/
 megaphone
 phonebook
+account
