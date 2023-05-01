@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:48:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/05/01 12:02:39 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:58:18 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,6 @@ Account::~Account(void)
 {
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
-}
-
-void Account::_displayTimestamp(void)
-{
-	std::time_t now = std::time(nullptr);
-	std::tm *local_time = std::localtime(&now);
-	std::cout << "[" << std::put_time(local_time, "%Y%m%d_%H%M%S") << "] ";
 }
 
 void Account::displayAccountsInfos(void)
@@ -112,4 +105,11 @@ void Account::displayStatus(void) const
 	std::cout << "index:" << _accountIndex << ";amount:" << _amount
 			  << ";deposits:" << _nbDeposits
 			  << ";withdrawals:" << _nbWithdrawals << std::endl;
+}
+
+void Account::_displayTimestamp(void)
+{
+	std::time_t now = std::time(nullptr);
+	std::tm *local_time = std::localtime(&now);
+	std::cout << "[" << std::put_time(local_time, "%Y%m%d_%H%M%S") << "] ";
 }
