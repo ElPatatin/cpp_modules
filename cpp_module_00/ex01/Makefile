@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2023/04/30 20:44:00 by cpeset-c         ###   ########.fr        #
+#    Updated: 2023/05/05 17:43:48 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ WHITE		:= \033[0;97m
 
 INC_DIR	:= inc/
 SRC_DIR	:= srcs/
+UTL_DIR	:= utils/
 
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
@@ -94,7 +95,10 @@ SRC_FLS	:= Contact.cpp \
 		PhoneBook.cpp \
 		main.cpp
 
-SRCS	= $(addprefix $(SRC_DIR), $(SRC_FLS))
+UTL_FLS	:= utils.cpp
+
+SRCS	+= $(addprefix $(SRC_DIR), $(SRC_FLS))
+SRCS	+= $(addprefix $(UTL_DIR), $(UTL_FLS))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))

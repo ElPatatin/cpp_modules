@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:48:22 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/04/30 20:31:11 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:29:15 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ class PhoneBook
 		
 		// Adds a new contact to the PhoneBook
 		void	addContact();
+		int		auxAddContact(std::string &str);
+		int		auxAddContact2(std::string &str);
 
 		// Search a contact in the PhoneBook
 		void	searchContacts();
