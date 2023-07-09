@@ -20,6 +20,7 @@ int main(int ac, char **av)
 {
 	if (ac == 1) {
 		megaphone("* LOUD AND UNBEARABLE FEEDBACK NOISE *");
+		std::cout << std::endl;
 		return (1);
 	}
 	

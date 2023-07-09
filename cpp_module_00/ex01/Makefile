@@ -92,7 +92,7 @@ endif
 INCLUDE	:= -I./$(INC_DIR)
 
 SRC_FLS	:= Contact.cpp \
-		PhoneBook.cpp \
+		Phonebook.cpp \
 		main.cpp
 
 UTL_FLS	:= utils.cpp

@@ -13,8 +13,9 @@
 #ifndef _CONTACT_HPP
 # define _CONTACT_HPP
 
-#include <string>
-#include <iostream>
+# include <string>
+# include <iostream>
+# include <cstdlib>
 
 # define COL_WIDTH		(int)10
 

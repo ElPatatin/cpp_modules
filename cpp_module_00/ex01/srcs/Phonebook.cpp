@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Phonebook.hpp"
 #include "Utils.hpp"
 #include "Errors.hpp"
 #include "Colors.hpp"
@@ -115,7 +115,7 @@ void	PhoneBook::searchContacts()
 	if (auxAddContact2(str))
 		return ;
 
-	int idx = std::stoi(str);
+	int idx = std::atoi(str.c_str());
 
 	if ((idx >= 1 && idx <= this->numContacts)) {
 		

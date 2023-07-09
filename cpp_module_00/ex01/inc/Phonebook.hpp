@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <cstdlib>
 
 // My class Contact
 # include "Contact.hpp"
