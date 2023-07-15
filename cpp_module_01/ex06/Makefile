@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2023/07/15 19:33:11 by cpeset-c         ###   ########.fr        #
+#    Updated: 2023/07/15 20:20:14 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYSTEM	:= $(shell uname -s)
 
 # -=-=-=-=-	NAME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-NAME    	:= Harl\ filter
+NAME    	:= harlFilter
 
 MKFL		:= Makefile
 
@@ -90,7 +90,7 @@ endif
 
 INCLUDE	:= -I./$(INC_DIR)
 
-SRC_FLS = 
+SRC_FLS = Harl.cpp
 
 SRCS	= main.cpp
 SRCS	+= $(addprefix $(SRC_DIR), $(SRC_FLS))
