@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2023/07/15 17:15:02 by cpeset-c         ###   ########.fr        #
+#    Updated: 2023/07/15 19:32:01 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYSTEM	:= $(shell uname -s)
 
 # -=-=-=-=-	NAME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-NAME    	:= Moar brainz!
+NAME    	:= Sed\ is\ for\ losers
 
 MKFL		:= Makefile
 
@@ -36,9 +36,6 @@ CYAN		:= \033[0;96m
 WHITE		:= \033[0;97m
 
 # -=-=-=-=-	PATH -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
-
-SRC_DIR	:= src/
-INC_DIR	:= inc/
 
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
@@ -88,12 +85,7 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(INC_DIR)
-
-SRC_FLS = 
-
 SRCS	= main.cpp
-SRCS	+= $(addprefix $(SRC_DIR), $(SRC_FLS))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))
@@ -128,7 +120,7 @@ re:
 $(OBJ_DIR)%.o: %$(EXT) $(MKFL)
 	@$(MK) $(dir $@) $(dir $(subst $(OBJ_DIR), $(DEP_DIR), $@))
 	@printf "\r$(GREEN)\tCompiling: $(YELLOW)$< $(DEF_CLR)                   \r"
-	@$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
 	@mv $(patsubst %.o, %.d, $@) $(dir $(subst $(OBJ_DIR), $(DEP_DIR), $@))
 
 .PHONY: all clean fclean re
