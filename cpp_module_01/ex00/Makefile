@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpeset-c <cpeset-c@student.42barce>        +#+  +:+       +#+         #
+#    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2023/04/28 13:42:34 by cpeset-c         ###   ########.fr        #
+#    Updated: 2023/07/15 17:08:19 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYSTEM	:= $(shell uname -s)
 
 # -=-=-=-=-	NAME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-NAME    	:= megaphone
+NAME    	:= BraiiiiiiinnnzzzZ
 
 MKFL		:= Makefile
 
@@ -37,7 +37,8 @@ WHITE		:= \033[0;97m
 
 # -=-=-=-=-	PATH -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-BIN_DIR	:= bin/
+SRC_DIR	:= src/
+INC_DIR	:= inc/
 
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
@@ -87,7 +88,14 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-SRCS	= megaphone.cpp
+INCLUDE	:= -I./$(INC_DIR)
+
+SRC_FLS = Zombie.cpp \
+		newZombie.cpp \
+		randomChump.cpp
+
+SRCS	= main.cpp
+SRCS	+= $(addprefix $(SRC_DIR), $(SRC_FLS))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))
@@ -125,4 +133,4 @@ $(OBJ_DIR)%.o: %$(EXT) $(MKFL)
 	@$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDE) -c $< -o $@
 	@mv $(patsubst %.o, %.d, $@) $(dir $(subst $(OBJ_DIR), $(DEP_DIR), $@))
 
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re

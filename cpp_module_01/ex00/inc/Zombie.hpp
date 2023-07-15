@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 16:50:07 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/07/15 16:57:28 by cpeset-c         ###   ########.fr       */
+/*   Created: 2023/07/15 16:17:38 by cpeset-c          #+#    #+#             */
+/*   Updated: 2023/07/15 17:02:42 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef __ZOMBIE_HPP__
+# define __ZOMBIE_HPP__
 
-int main(void) {
-    Zombie *zombie = newZombie("Zombie1");
-    zombie->announce();
-    randomChump("Zombie2");
-    delete zombie;
-    return (0);
-}
+# include <iostream>
+# include <string>
+
+class Zombie
+{
+    private:
+        std::string _name;
+
+    public:
+        Zombie( std::string name );
+        ~Zombie();
+        void announce();
+};
+
+Zombie  *newZombie( std::string name );
+void    randomChump( std::string name );
+
+
+#endif

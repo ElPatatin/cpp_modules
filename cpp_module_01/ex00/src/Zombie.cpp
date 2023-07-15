@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 16:50:07 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/07/15 16:57:28 by cpeset-c         ###   ########.fr       */
+/*   Created: 2023/07/15 16:17:41 by cpeset-c          #+#    #+#             */
+/*   Updated: 2023/07/15 16:56:42 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int main(void) {
-    Zombie *zombie = newZombie("Zombie1");
-    zombie->announce();
-    randomChump("Zombie2");
-    delete zombie;
-    return (0);
+Zombie::Zombie( std::string name )
+{
+    this->_name = name;
+    std::cout << this->_name << " is born" << std::endl;
 }
+
+Zombie::~Zombie()
+{
+    std::cout << this->_name << " is dead" << std::endl;
+}
+
+void Zombie::announce()
+{
+    std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
