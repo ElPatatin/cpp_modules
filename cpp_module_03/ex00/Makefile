@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2023/11/02 11:11:55 by cpeset-c         ###   ########.fr        #
+#    Updated: 2023/11/02 14:01:06 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ endif
 
 INCLUDE	:= -I./$(INC_DIR)
 
-SRC_FLS = Harl.cpp
+SRC_FLS = ClapTrap.cpp
 
 SRCS	= main.cpp
 SRCS	+= $(addprefix $(SRC_DIR), $(SRC_FLS))
