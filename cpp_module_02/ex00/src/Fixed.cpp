@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:41 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/12/13 10:14:29 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:34:32 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,10 @@ Fixed & Fixed::operator=( const Fixed & rhs ) {
 int Fixed::getRawBits( void ) const {
     std::cout << "getRawBits member function called" << std::endl;
     return this->_fixedPointValue;
+}
+
+void Fixed::setRawBits( int const raw ) {
+    std::cout << "setRawBits member function called" << std::endl;
+    this->_fixedPointValue = raw;
+    return ;
 }

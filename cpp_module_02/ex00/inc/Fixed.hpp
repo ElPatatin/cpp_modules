@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/12/13 09:24:43 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2023/12/18 12:34:31 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,34 @@
 
 #include <iostream>
 
-class Fixed {
-
+class Fixed
+{
     // PUBLIC MEMBERS
     // ==============
     public:
-    // Default constructor
-    Fixed( void );
+        // Default constructor
+        Fixed( void );
 
-    // Copy constructor
-    Fixed( const Fixed & src );
+        // Copy constructor
+        Fixed( const Fixed & src );
 
-    // Destructor
-    ~Fixed( void );
+        // Copy assignment operator
+        Fixed & operator=( const Fixed & rhs );
 
-    // Copy assignment operator
-    Fixed & operator=( const Fixed & rhs );
+        // Destructor
+        ~Fixed( void );
 
-    // Returns the raw value of the fixed point value
-    int getRawBits( void ) const;
+        // Returns the raw value of the fixed point value
+        int getRawBits( void ) const;
+
+        // Sets the raw value of the fixed point value
+        void setRawBits( int const raw );
 
     // PRIVATE MEMBERS
     // ===============
     private:
         int _fixedPointValue;
-}
+        static const int _fractionalBits = 8;
+};
 
 #endif
