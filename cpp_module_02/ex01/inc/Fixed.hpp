@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 16:16:48 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/12 22:18:52 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ class Fixed
         // Member function to convert to an integer value
         int toInt( void ) const;
 
-        // Overload of the insertion (<<) operator
-        friend std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
         // END NEW MEMBERS
 
     // PRIVATE MEMBERS
@@ -67,5 +65,8 @@ class Fixed
         int _fixedPointValue;
         static const int _fractionalBits = 8;
 };
+
+// Overload of the insertion (<<) operator
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif

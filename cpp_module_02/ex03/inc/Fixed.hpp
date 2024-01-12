@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 22:26:06 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/12 22:26:39 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ class Fixed
         // OPERATOR OVERLOADS
         // ==================
 
-
         // NEW OPERATOR OVERLOADS
         // ======================
         // Overloaded comparison operators
@@ -96,5 +95,5 @@ class Fixed
 
 // Overload of the insertion (<<) operator
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
-
+        
 #endif
