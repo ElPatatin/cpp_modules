@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:41 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/12/18 12:34:32 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/12 11:03:43 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Fixed::Fixed( void ) {
     std::cout << "Default constructor called" << std::endl;
+    this->_fixedPointValue = 0;
     return ;
 }
 

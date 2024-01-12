@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2023/12/18 12:35:04 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/01/12 12:54:57 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,7 @@ endif
 
 INCLUDE	:= -I./$(INC_DIR)
 
+# Edit files
 SRC_FLS = Fixed.cpp
 
 SRCS	= main.cpp
