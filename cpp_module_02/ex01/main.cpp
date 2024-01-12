@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:35 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 15:09:09 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:53:43 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,22 @@
 #include "Fixed.hpp"
 
 int main(void) {
-    Fixed a;
-    Fixed b( a );
-    Fixed c;
-    
-    c = b;
-    std::cout << a.getRawBits() << std::endl;
-    std::cout << b.getRawBits() << std::endl;
-    std::cout << c.getRawBits() << std::endl;
+    Fixed       a;
+    Fixed const b( 10 );
+    Fixed const c( 42.42f );
+    Fixed const d( b );
 
-    a.setRawBits(10);
-    std::cout << a.getRawBits() << std::endl;
+    a = Fixed( 1234.4321f );
 
-    b.setRawBits(20);
-    std::cout << b.getRawBits() << std::endl;
+    std::cout << "a is " << a << std::endl;
+    std::cout << "b is " << b << std::endl;
+    std::cout << "c is " << c << std::endl;
+    std::cout << "d is " << d << std::endl;
 
-    c.setRawBits(30);
-    std::cout << c.getRawBits() << std::endl;
-    
+    std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+    std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+    std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+    std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
     return 0;
 }
