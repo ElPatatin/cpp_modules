@@ -6,42 +6,54 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:53 by cpeset-c          #+#    #+#             */
-/*   Updated: 2023/11/02 14:15:34 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:35:24 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 /**
- * @name ClapTrap (constructor)
+ * @name ClapTrap (default constructor)
  * @brief Constructor implementation.
  * 
- * Initializes the ClapTrap with the provided name, default hit points, energy points, and attack damage.
+ * Initializes the ClapTrap with the provided name, hit points, energy points, and attack damage.
  * Displays a birth message.
  * 
- * @param name - The name of the ClapTrap.
+ * @param void
  * @return void
  * 
- * @details The constructor is called when the ClapTrap is created.
+ * @details The default constructor is called when the ClapTrap is created.
  * 
- * @date 02/11/2023 11:40:00
+ * @date 23/01/2024 14:30:00
  * @dir ex00/ClapTrapClass/src
  * @file ClapTrap.cpp
- */
-ClapTrap::ClapTrap( const std::string& name ) : Name(name), HitPoints(10), EnergyPoints(10), AttackDamage(0) {
-    std::cout << "ClapTrap " << getName() << " is born!" << std::endl;
-}
-/**
- * ClapTrap::ClapTrap(const std::string& name) is the constructor declaration, specifying that it takes a const std::string& parameter named name.
- * 
- *  : starts the initializer list.
- * 
- * Name(name), HitPoints(10), EnergyPoints(10), and AttackDamage(0) are member variable initializations. They set the initial values of the class's private attributes. In this case:
- *  - Name(name) initializes the Name attribute with the value of the name parameter passed to the constructor.
- *  - HitPoints(10) initializes the HitPoints attribute with a default value of 10.
- *  - EnergyPoints(10) initializes the EnergyPoints attribute with a default value of 10.
- *  - AttackDamage(0) initializes the AttackDamage attribute with a default value of 0.
 */
+ClapTrap::ClapTrap( void ) : Name("Default"), HitPoints(10), EnergyPoints(10), AttackDamage(0) {
+    std::cout << "ClapTrap " << getName() << " is born!" << std::endl;
+    return ;
+}
+
+/**
+ * @name ClapTrap (copy constructor)
+ * @brief Copy constructor implementation.
+ * 
+ * Initializes the ClapTrap with the provided name, hit points, energy points, and attack damage.
+ * Displays a birth message.
+ * 
+ * @param src - The ClapTrap to copy.
+ * @return void
+ * 
+ * @details The copy constructor is called when the ClapTrap is created from another ClapTrap.
+ * 
+ * @date 23/01/2024 14:30:00
+ * @dir ex00/ClapTrapClass/src
+ * @file ClapTrap.cpp
+*/
+ClapTrap::ClapTrap( const ClapTrap& src ) {
+    *this = src;
+    std::cout << "ClapTrap " << getName() << " copy is born!" << std::endl;
+    return ;
+}
 
 /**
  * @name ClapTrap (desctructor)
@@ -61,6 +73,92 @@ ClapTrap::ClapTrap( const std::string& name ) : Name(name), HitPoints(10), Energ
 ClapTrap::~ClapTrap( void ) {
     std::cout << "ClapTrap " << getName() << " is destroyed!" << std::endl;
 }
+
+/**
+ * @name operator= (assignation operator overload)
+ * @brief Assignation operator overload implementation.
+ * 
+ * Assigns the values of the provided ClapTrap to the current ClapTrap.
+ * 
+ * @param rhs - The ClapTrap to copy.
+ * @return The current ClapTrap.
+ * 
+ * @details The assignation operator overload is called when the ClapTrap is assigned to another ClapTrap.
+ * 
+ * @date 23/01/2024 14:30:00
+ * @dir ex00/ClapTrapClass/src
+ * @file ClapTrap.cpp
+*/
+ClapTrap& ClapTrap::operator=( const ClapTrap& rhs ) {
+    if (this != &rhs) {
+        this->Name = rhs.Name;
+        this->HitPoints = rhs.HitPoints;
+        this->EnergyPoints = rhs.EnergyPoints;
+        this->AttackDamage = rhs.AttackDamage;
+    }
+    return (*this);
+}
+
+/**
+ * @name ClapTrap (constructor with parameters)
+ * @brief Constructor implementation.
+ * 
+ * Initializes the ClapTrap with the provided name, default hit points, energy points, and attack damage.
+ * Displays a birth message.
+ * 
+ * @param name - The name of the ClapTrap.
+ * @return void
+ * 
+ * @details The constructor is called when the ClapTrap is created.
+ * 
+ * @date 02/11/2023 11:40:00
+ * @dir ex00/ClapTrapClass/src
+ * @file ClapTrap.cpp
+ */
+ClapTrap::ClapTrap( const std::string& name ) : Name(name), HitPoints(10), EnergyPoints(10), AttackDamage(0) {
+    std::cout << "ClapTrap " << getName() << " is born!" << std::endl;
+    return ;
+}
+
+/**
+ * @name ClapTrap (constructor with parameters)
+ * @brief Constructor implementation.
+ * 
+ * Initializes the ClapTrap with the provided name, hit points, energy points, and attack damage.
+ * Displays a birth message.
+ * 
+ * @param name - The name of the ClapTrap.
+ * @param hitPoints - The hit points of the ClapTrap.
+ * @param energyPoints - The energy points of the ClapTrap.
+ * @param attackDamage - The attack damage of the ClapTrap.
+ * @return void
+ * 
+ * @details The constructor is called when the ClapTrap is created.
+ * 
+ * @date 23/01/2024 14:30:00
+ * @dir ex00/ClapTrapClass/src
+ * @file ClapTrap.cpp
+*/
+ClapTrap::ClapTrap( const std::string& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage )\
+ : Name(name), HitPoints(hitPoints), EnergyPoints(energyPoints), AttackDamage(attackDamage) {
+    std::cout << "ClapTrap " << getName() << " is born!" << std::endl;
+    return ;
+    
+}
+/**
+ * ClapTrap::ClapTrap(const std::string& name) is the constructor declaration, specifying that it takes a const std::string& parameter named name.
+ * 
+ *  : starts the initializer list.
+ * 
+ * Name(name), HitPoints(10), EnergyPoints(10), and AttackDamage(0) are member variable initializations. They set the initial values of the class's private attributes. In this case:
+ *  - Name(name) initializes the Name attribute with the value of the name parameter passed to the constructor.
+ *  - HitPoints(10) initializes the HitPoints attribute with a default value of 10.
+ *  - EnergyPoints(10) initializes the EnergyPoints attribute with a default value of 10.
+ *  - AttackDamage(0) initializes the AttackDamage attribute with a default value of 0.
+*/
+
+// MEMBER FUNCTIONS
+// ================
 
 /**
  * @name Attack
@@ -142,7 +240,8 @@ void ClapTrap::beRepaired( unsigned int amount ) {
     }
 }
 
-// Setters
+// SETTERS
+// =======
 
 /**
  * @name NameSetter
@@ -216,7 +315,8 @@ void ClapTrap::setAttackDamage( unsigned int attackDamage ) {
     this->AttackDamage = attackDamage;
 }
 
-// Getters
+// GETTERS
+// =======
 
 /**
  * @name NameGetter
