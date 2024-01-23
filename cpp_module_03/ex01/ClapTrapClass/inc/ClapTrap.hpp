@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:56 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 13:25:33 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:25:43 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ class ClapTrap
         unsigned int getEnergyPoints( void ) const;
         unsigned int getAttackDamage( void ) const;
 
-    private:
-        std::string Name;
-        unsigned int HitPoints;
-        unsigned int EnergyPoints;
-        unsigned int AttackDamage;
+    protected:
+        std::string name;
+        unsigned int hitPoints;
+        unsigned int energyPoints;
+        unsigned int attackDamage;
 
 };
 

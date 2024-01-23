@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:53 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 13:35:24 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:26:27 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
  * @dir ex00/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
-ClapTrap::ClapTrap( void ) : Name("Default"), HitPoints(10), EnergyPoints(10), AttackDamage(0) {
+ClapTrap::ClapTrap( void ) : name("Default"), hitPoints(10), energyPoints(10), attackDamage(0) {
     std::cout << "ClapTrap " << getName() << " is born!" << std::endl;
     return ;
 }
@@ -91,10 +91,10 @@ ClapTrap::~ClapTrap( void ) {
 */
 ClapTrap& ClapTrap::operator=( const ClapTrap& rhs ) {
     if (this != &rhs) {
-        this->Name = rhs.Name;
-        this->HitPoints = rhs.HitPoints;
-        this->EnergyPoints = rhs.EnergyPoints;
-        this->AttackDamage = rhs.AttackDamage;
+        this->name = rhs.name;
+        this->hitPoints = rhs.hitPoints;
+        this->energyPoints = rhs.energyPoints;
+        this->attackDamage = rhs.attackDamage;
     }
     return (*this);
 }
@@ -115,7 +115,7 @@ ClapTrap& ClapTrap::operator=( const ClapTrap& rhs ) {
  * @dir ex00/ClapTrapClass/src
  * @file ClapTrap.cpp
  */
-ClapTrap::ClapTrap( const std::string& name ) : Name(name), HitPoints(10), EnergyPoints(10), AttackDamage(0) {
+ClapTrap::ClapTrap( const std::string& name ) : name(name), hitPoints(10), energyPoints(10), attackDamage(0) {
     std::cout << "ClapTrap " << getName() << " is born!" << std::endl;
     return ;
 }
@@ -140,7 +140,7 @@ ClapTrap::ClapTrap( const std::string& name ) : Name(name), HitPoints(10), Energ
  * @file ClapTrap.cpp
 */
 ClapTrap::ClapTrap( const std::string& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage )\
- : Name(name), HitPoints(hitPoints), EnergyPoints(energyPoints), AttackDamage(attackDamage) {
+ : name(name), hitPoints(hitPoints), energyPoints(energyPoints), attackDamage(attackDamage) {
     std::cout << "ClapTrap " << getName() << " is born!" << std::endl;
     return ;
     
@@ -179,9 +179,9 @@ ClapTrap::ClapTrap( const std::string& name, unsigned int hitPoints, unsigned in
  * @public
  */
 void ClapTrap::attack( const std::string& target ) {
-    if (HitPoints > 0 && EnergyPoints > 0) {
+    if (hitPoints > 0 && energyPoints > 0) {
         std::cout << "ClapTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage!" << std::endl;
-        EnergyPoints--;
+        energyPoints--;
     } else {
         std::cout << "ClapTrap " << getName() << " can't attack due to low health or energy." << std::endl;
     }
@@ -204,10 +204,10 @@ void ClapTrap::attack( const std::string& target ) {
  * @public
  */
 void ClapTrap::takeDamage( unsigned int amount ) {
-    if (HitPoints > 0) {
+    if (hitPoints > 0) {
         std::cout << "ClapTrap " << getName() << " takes " << amount << " damage." << std::endl;
-        HitPoints -= amount;
-        setHitPoints(HitPoints);
+        hitPoints -= amount;
+        setHitPoints(hitPoints);
     } else {
         std::cout << "ClapTrap " << getName() << " can't take damage because it has no hit points left." << std::endl;
     }
@@ -231,10 +231,10 @@ void ClapTrap::takeDamage( unsigned int amount ) {
  * @public
  */
 void ClapTrap::beRepaired( unsigned int amount ) {
-    if (HitPoints > 0) {
+    if (hitPoints > 0) {
         std::cout << "ClapTrap " << getName() << " is repaired and gains " << amount << " hit points." << std::endl;
-        HitPoints += amount;
-        EnergyPoints--;
+        hitPoints += amount;
+        energyPoints--;
     } else {
         std::cout << "ClapTrap " << getName() << " can't be repaired because it has no hit points left." << std::endl;
     }
@@ -258,7 +258,7 @@ void ClapTrap::beRepaired( unsigned int amount ) {
  * @public
 */
 void ClapTrap::setName( const std::string& name ) {
-    this->Name = name;
+    this->name = name;
 }
 
 /**
@@ -276,7 +276,7 @@ void ClapTrap::setName( const std::string& name ) {
  * @public
 */
 void ClapTrap::setHitPoints( unsigned int hitPoints ) {
-    this->HitPoints = hitPoints;
+    this->hitPoints = hitPoints;
 }
 
 /**
@@ -294,7 +294,7 @@ void ClapTrap::setHitPoints( unsigned int hitPoints ) {
  * @public
 */
 void ClapTrap::setEnergyPoints( unsigned int energyPoints ) {
-    this->EnergyPoints = energyPoints;
+    this->energyPoints = energyPoints;
 }
 
 /**
@@ -312,7 +312,7 @@ void ClapTrap::setEnergyPoints( unsigned int energyPoints ) {
  * @public
 */
 void ClapTrap::setAttackDamage( unsigned int attackDamage ) {
-    this->AttackDamage = attackDamage;
+    this->attackDamage = attackDamage;
 }
 
 // GETTERS
@@ -333,7 +333,7 @@ void ClapTrap::setAttackDamage( unsigned int attackDamage ) {
  * @public
 */
 std::string ClapTrap::getName( void ) const {
-    return (this->Name);
+    return (this->name);
 }
 
 /**
@@ -351,7 +351,7 @@ std::string ClapTrap::getName( void ) const {
  * @public
  */
 unsigned int ClapTrap::getHitPoints( void ) const {
-    return (this->HitPoints);
+    return (this->hitPoints);
 }
 
 /**
@@ -369,7 +369,7 @@ unsigned int ClapTrap::getHitPoints( void ) const {
  * @public
 */
 unsigned int ClapTrap::getEnergyPoints( void ) const {
-    return (this->EnergyPoints);
+    return (this->energyPoints);
 }
 
 /**
@@ -387,5 +387,5 @@ unsigned int ClapTrap::getEnergyPoints( void ) const {
  * @public
 */
 unsigned int ClapTrap::getAttackDamage( void ) const {
-    return (this->AttackDamage);
+    return (this->attackDamage);
 }
