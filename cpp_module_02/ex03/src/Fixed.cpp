@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:41 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 22:37:12 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:33:09 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,6 @@ Fixed::Fixed( const Fixed & src ) {
     return ;
 }
 
-Fixed::Fixed(int const value)
-{
-    this->_fixedPointValue = value << _fractionalBits;
-}
-
-Fixed::Fixed(float const value)
-{
-    this->_fixedPointValue = roundf(value * (1 << _fractionalBits));
-}
-
 Fixed::~Fixed( void ) {
     return ;
 }
@@ -41,6 +31,16 @@ Fixed & Fixed::operator=( const Fixed & rhs ) {
         this->_fixedPointValue = rhs.getRawBits();
     } 
     return *this;
+}
+
+Fixed::Fixed(float const value)
+{
+    this->_fixedPointValue = roundf(value * (1 << _fractionalBits));
+}
+
+Fixed::Fixed(int const value)
+{
+    this->_fixedPointValue = value << _fractionalBits;
 }
 
 int Fixed::getRawBits( void ) const {
@@ -119,22 +119,27 @@ Fixed Fixed::operator/(const Fixed &rhs) const {
 }
 
 // Overloaded increment/decrement operators
+
+// Pre-increment operator
 Fixed &Fixed::operator++() {
     ++this->_fixedPointValue;
     return *this;
 }
 
+// Post-increment operator
 Fixed Fixed::operator++(int) {
     Fixed temp(*this);
     ++(*this);
     return temp;
 }
 
+// Pre-decrement operator
 Fixed &Fixed::operator--() {
     --this->_fixedPointValue;
     return *this;
 }
 
+// Post-decrement operator
 Fixed Fixed::operator--(int) {
     Fixed temp(*this);
     --(*this);
@@ -142,6 +147,7 @@ Fixed Fixed::operator--(int) {
 }
 
 // Static member functions
+
 const Fixed &Fixed::min(const Fixed &a, const Fixed &b) {
     return (a < b) ? a : b;
 }

@@ -6,29 +6,33 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:41 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 15:32:33 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:59:01 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+// Default constructor
 Fixed::Fixed( void ) {
     std::cout << "Default constructor called" << std::endl;
     this->_fixedPointValue = 0;
     return ;
 }
 
+// Copy constructor
 Fixed::Fixed( const Fixed & src ) {
     std::cout << "Copy constructor called" << std::endl;
     *this = src;
     return ;
 }
 
+// Destructor
 Fixed::~Fixed( void ) {
     std::cout << "Destructor called" << std::endl;
     return ;
 }
 
+// Copy assignment operator
 Fixed & Fixed::operator=( const Fixed & rhs ) {
     std::cout << "Assignation operator called" << std::endl;
     if ( this != &rhs ) {

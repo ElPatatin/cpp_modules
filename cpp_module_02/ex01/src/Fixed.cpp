@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:41 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 22:19:08 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:13:08 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,26 @@ Fixed::~Fixed( void ) {
     return ;
 }
 
-// NEW CONSTRUCTORS
-// ================
-Fixed::Fixed(int const value)
-{
-    std::cout << "Int constructor called" << std::endl;
-    this->_fixedPointValue = value << _fractionalBits;
-}
-
-Fixed::Fixed(float const value)
-{
-    std::cout << "Float constructor called" << std::endl;
-    this->_fixedPointValue = roundf(value * (1 << _fractionalBits));
-}
-// END NEW CONSTRUCTORS
-// ===================
-
 Fixed & Fixed::operator=( const Fixed & rhs ) {
     std::cout << "Assignation operator called" << std::endl;
     if ( this != &rhs ) {
         this->_fixedPointValue = rhs.getRawBits();
     } 
     return *this;
+}
+
+// Constructor to convert from an integer
+Fixed::Fixed(int const value)
+{
+    std::cout << "Int constructor called" << std::endl;
+    this->_fixedPointValue = value << _fractionalBits;
+}
+
+// Constructor to convert from a floating-point number
+Fixed::Fixed(float const value)
+{
+    std::cout << "Float constructor called" << std::endl;
+    this->_fixedPointValue = roundf(value * (1 << _fractionalBits));
 }
 
 int Fixed::getRawBits( void ) const {
@@ -64,22 +62,21 @@ void Fixed::setRawBits( int const raw ) {
     return ;
 }
 
-// NEW MEMBER FUNCTIONS
-// ====================
+// Member function to convert to a floating-point value
 float Fixed::toFloat(void) const
 {
     return static_cast<float>(this->_fixedPointValue) / (1 << _fractionalBits);
 }
 
+// Member function to convert to an integer value
 int Fixed::toInt(void) const
 {
     return this->_fixedPointValue >> _fractionalBits;
 }
 
+// Overload of the insertion (<<) operator
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {
     out << fixed.toFloat();
     return out;
 }
-// END NEW MEMBER FUNCTIONS
-// ========================

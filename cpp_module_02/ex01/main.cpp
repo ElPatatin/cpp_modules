@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:35 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 15:53:43 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:13:14 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ int main(void) {
     std::cout << "c is " << c.toInt() << " as integer" << std::endl;
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 
+    std::cout << "a is " << a.toFloat() << " as float" << std::endl;
+    std::cout << "b is " << b.toFloat() << " as float" << std::endl;
+    std::cout << "c is " << c.toFloat() << " as float" << std::endl;
+    std::cout << "d is " << d.toFloat() << " as float" << std::endl;
     return 0;
 }

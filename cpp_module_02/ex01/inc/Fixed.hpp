@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 22:18:52 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:13:12 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,49 +18,31 @@
 
 class Fixed
 {
-    // PUBLIC MEMBERS
-    // ==============
     public:
-        // Default constructor
         Fixed( void );
 
-        // Copy constructor
         Fixed( const Fixed & src );
 
-        // Copy assignment operator
-        Fixed & operator=( const Fixed & rhs );
-
-        // Destructor
         ~Fixed( void );
 
-        // Returns the raw value of the fixed point value
-        int getRawBits( void ) const;
+        Fixed & operator=( const Fixed & rhs );
 
-        // Sets the raw value of the fixed point value
-        void setRawBits( int const raw );
-
-        // NEW CONSTRUCTORS
-        // ================
         // Constructor to convert from an integer
         Fixed( int const value );
 
         // Constructor to convert from a floating-point number
         Fixed( float const value );
-        // END NEW CONSTRUCTORS
 
+        int getRawBits( void ) const;
 
-        // NEW MEMBERS
-        // ===========
+        void setRawBits( int const raw );
+
         // Member function to convert to a floating-point value
         float toFloat( void ) const;
 
         // Member function to convert to an integer value
         int toInt( void ) const;
 
-        // END NEW MEMBERS
-
-    // PRIVATE MEMBERS
-    // ===============
     private:
         int _fixedPointValue;
         static const int _fractionalBits = 8;

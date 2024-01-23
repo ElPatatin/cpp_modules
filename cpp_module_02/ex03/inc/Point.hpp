@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:32:48 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 22:35:33 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:31:45 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,32 @@
 
 class Point {
 
-    // PUBLIC MEMBERS
-    // ==============
     public:
+
+        // Constructors
         Point( void );
+
         Point( Point const & src );
-        Point( float const x, float const y );
-        Point( float const x, float const y, float const z );
+
         ~Point( void );
 
-    // PRIVATE MEMBERS
-    // ===============
+        Point &operator=(const Point &other);
+        
+        Point( float const x, float const y );
+
+        Point( float const x, float const y, float const aux );
+        
+        // Getters
+        Fixed getX( void ) const;
+        Fixed getY( void ) const;
+
     private:
-        Fixed const _x;
-        Fixed const _y;
-        Fixed const _z;
+        Fixed const x;
+        Fixed const y;
+        Fixed const aux;
 
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif

@@ -6,56 +6,48 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:41 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/12 22:18:33 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:34:00 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 Fixed::Fixed( void ) {
-    std::cout << "Default constructor called" << std::endl;
     this->_fixedPointValue = 0;
     return ;
 }
 
 Fixed::Fixed( const Fixed & src ) {
-    std::cout << "Copy constructor called" << std::endl;
     *this = src;
     return ;
 }
 
 Fixed::~Fixed( void ) {
-    std::cout << "Destructor called" << std::endl;
     return ;
 }
 
-Fixed::Fixed(int const value)
-{
-    std::cout << "Int constructor called" << std::endl;
-    this->_fixedPointValue = value << _fractionalBits;
-}
-
-Fixed::Fixed(float const value)
-{
-    std::cout << "Float constructor called" << std::endl;
-    this->_fixedPointValue = roundf(value * (1 << _fractionalBits));
-}
-
 Fixed & Fixed::operator=( const Fixed & rhs ) {
-    std::cout << "Assignation operator called" << std::endl;
     if ( this != &rhs ) {
         this->_fixedPointValue = rhs.getRawBits();
     } 
     return *this;
 }
 
+Fixed::Fixed(float const value)
+{
+    this->_fixedPointValue = roundf(value * (1 << _fractionalBits));
+}
+
+Fixed::Fixed(int const value)
+{
+    this->_fixedPointValue = value << _fractionalBits;
+}
+
 int Fixed::getRawBits( void ) const {
-    std::cout << "getRawBits member function called" << std::endl;
     return this->_fixedPointValue;
 }
 
 void Fixed::setRawBits( int const raw ) {
-    std::cout << "setRawBits member function called" << std::endl;
     this->_fixedPointValue = raw;
     return ;
 }
@@ -130,22 +122,27 @@ Fixed Fixed::operator/(const Fixed &rhs) const {
 }
 
 // Overloaded increment/decrement operators
+
+// Pre-increment operator
 Fixed &Fixed::operator++() {
     ++this->_fixedPointValue;
     return *this;
 }
 
+// Post-increment operator
 Fixed Fixed::operator++(int) {
     Fixed temp(*this);
     ++(*this);
     return temp;
 }
 
+// Pre-decrement operator
 Fixed &Fixed::operator--() {
     --this->_fixedPointValue;
     return *this;
 }
 
+// Post-decrement operator
 Fixed Fixed::operator--(int) {
     Fixed temp(*this);
     --(*this);

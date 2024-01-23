@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/01/20 14:50:44 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/01/23 12:15:32 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYSTEM	:= $(shell uname -s)
 
 # -=-=-=-=-	NAME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-NAME    	:= BSP
+NAME    	:= serena_myLove
 
 MKFL		:= Makefile
 
@@ -37,8 +37,9 @@ WHITE		:= \033[0;97m
 
 # -=-=-=-=-	PATH -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-SRC_DIR	:= src/
-INC_DIR	:= inc/
+CLS_DIR := ClapTrapClass/
+SRC_DIR	:= $(CLS_DIR)src/
+INC_DIR	:= $(CLS_DIR)inc/
 
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
@@ -90,8 +91,7 @@ endif
 
 INCLUDE	:= -I./$(INC_DIR)
 
-# Edit files
-SRC_FLS = Fixed.cpp Point.cpp bsp.cpp
+SRC_FLS = ClapTrap.cpp
 
 SRCS	= main.cpp
 SRCS	+= $(addprefix $(SRC_DIR), $(SRC_FLS))
