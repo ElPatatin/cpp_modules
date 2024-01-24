@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:53 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/24 16:35:53 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:38:02 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ void ClapTrap::takeDamage( unsigned int amount ) {
  * @name BeRepaired
  * @brief Member function to be repaired.
  * 
- * Increases the ClapTrap's hit points by the specified amount.
+ * Increases the ClapTrap's hit poin ts by the specified amount.
  * Decreases energy by 1.
  * 
  * @param amount - The amount of hit points gained during repair.

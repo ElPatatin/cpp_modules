@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/01/23 12:15:32 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/01/24 16:33:01 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,15 +34,6 @@ BLUE		:= \033[0;94m
 MAGENTA		:= \033[0;95m
 CYAN		:= \033[0;96m
 WHITE		:= \033[0;97m
-
-# -=-=-=-=-	PATH -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
-
-CLS_DIR := ClapTrapClass/
-SRC_DIR	:= $(CLS_DIR)src/
-INC_DIR	:= $(CLS_DIR)inc/
-
-OBJ_DIR	:= .objs/
-DEP_DIR	:= .deps/
 
 # -=-=-=-=-	CMND -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
@@ -80,6 +71,20 @@ RM		= rm -f
 MK		= mkdir -p
 CP		= cp -f
 
+# -=-=-=-=-	PATH -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+
+
+CTC_DIR := ClapTrapClass/
+CTC_SRC_DIR	:= $(CTC_DIR)src/
+CTC_INC_DIR	:= $(CTC_DIR)inc/
+
+STC_DIR := ScavTrapClass/
+STC_SRC_DIR	:= $(STC_DIR)src/
+STC_INC_DIR	:= $(STC_DIR)inc/
+
+OBJ_DIR	:= .objs/
+DEP_DIR	:= .deps/
+
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
 ifeq ($(LANG), C)
@@ -89,12 +94,15 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(INC_DIR)
+INCLUDE	:= -I./$(CTC_INC_DIR) -I./$(STC_INC_DIR)
 
-SRC_FLS = ClapTrap.cpp
+CTC_SRC_FLS = ClapTrap.cpp
+
+STC_SRC_FLS = ScavTrap.cpp
 
 SRCS	= main.cpp
-SRCS	+= $(addprefix $(SRC_DIR), $(SRC_FLS))
+SRCS	+= $(addprefix $(CTC_SRC_DIR), $(CTC_SRC_FLS))
+SRCS	+= $(addprefix $(STC_SRC_DIR), $(STC_SRC_FLS))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))

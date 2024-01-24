@@ -1,4 +1,4 @@
-# **************************************************************************** #
+cpp_module_03/ex01/Makefile# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/01/24 16:40:31 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/01/23 12:15:32 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYSTEM	:= $(shell uname -s)
 
 # -=-=-=-=-	NAME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-NAME    	:= towardsAMoreUsefulFxed_pointNumberClass
+NAME    	:= repetitiveWork
 
 MKFL		:= Makefile
 
@@ -34,14 +34,6 @@ BLUE		:= \033[0;94m
 MAGENTA		:= \033[0;95m
 CYAN		:= \033[0;96m
 WHITE		:= \033[0;97m
-
-# -=-=-=-=-	PATH -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
-
-SRC_DIR	:= src/
-INC_DIR	:= inc/
-
-OBJ_DIR	:= .objs/
-DEP_DIR	:= .deps/
 
 # -=-=-=-=-	CMND -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
@@ -79,6 +71,24 @@ RM		= rm -f
 MK		= mkdir -p
 CP		= cp -f
 
+# -=-=-=-=-	PATH -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
+
+
+CTC_DIR := ClapTrapClass/
+CTC_SRC_DIR	:= $(CTC_DIR)src/
+CTC_INC_DIR	:= $(CTC_DIR)inc/
+
+STC_DIR := ScavTrapClass/
+STC_SRC_DIR	:= $(STC_DIR)src/
+STC_INC_DIR	:= $(STC_DIR)inc/
+
+FTC_DIR := FragTrapClass/
+FTC_SRC_DIR	:= $(FTC_DIR)src/
+FTC_INC_DIR	:= $(FTC_DIR)inc/
+
+OBJ_DIR	:= .objs/
+DEP_DIR	:= .deps/
+SRC_DIR
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
 ifeq ($(LANG), C)
@@ -88,13 +98,19 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(INC_DIR)
+INCLUDE	:= -I./$(CTC_INC_DIR) -I./$(STC_INC_DIR) -I./$(FTC_INC_DIR)
 
-# Edit files
-SRC_FLS = Fixed.cpp
+CTC_SRC_FLS = ClapTrap.cpp
+
+STC_SRC_FLS = ScavTrap.cpp
+
+FTC_SRC_FLS = FragTrap.cpp
 
 SRCS	= main.cpp
-SRCS	+= $(addprefix $(SRC_DIR), $(SRC_FLS))
+SRCS	+= $(addprefix $(CTC_SRC_DIR), $(CTC_SRC_FLS))
+SRCS	+= $(addprefix $(STC_SRC_DIR), $(STC_SRC_FLS))
+SRCS	+= $(addprefix $(FTC_SRC_DIR), $(FTC_SRC_FLS))
+
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))

@@ -37,9 +37,13 @@
 *.out
 *.app
 bin/
+
+# cpp 00
 megaphone
 phonebook
 account
+
+# cpp 02
 BraiiiiiiinnnzzzZ
 Moar\ brainz!Moar\ brainz!
 HI\ THIS\ IS\ BRAIN
@@ -48,6 +52,17 @@ Sed is for losers
 *.replace
 Harl\ 2.0
 Harl\ filter
-ClapTrap
+
+# cpp 02
 myFirstOrthodoxClass
-towardsAMoreUsefulFxed-pointNumberClass
+towardsAMoreUsefulFxed_pointNumberClass
+nowWeAreTalking
+bsp
+
+# cpp 03
+aaaaaaand_Open
+serena_myLove
+repetitiveWork
+nowItIsWeird
+
+# cpp 04

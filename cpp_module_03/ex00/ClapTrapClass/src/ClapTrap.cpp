@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:53 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/24 16:49:14 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:51:41 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @details The default constructor is called when the ClapTrap is created.
  * 
  * @date 23/01/2024 14:30:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
 ClapTrap::ClapTrap( void ) : name("Default"), hitPoints(10), energyPoints(10), attackDamage(0) {
@@ -46,7 +46,7 @@ ClapTrap::ClapTrap( void ) : name("Default"), hitPoints(10), energyPoints(10), a
  * @details The copy constructor is called when the ClapTrap is created from another ClapTrap.
  * 
  * @date 23/01/2024 14:30:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
 ClapTrap::ClapTrap( const ClapTrap& src ) {
@@ -67,11 +67,12 @@ ClapTrap::ClapTrap( const ClapTrap& src ) {
  * @details The destructor is called when the ClapTrap is destroyed.
  * 
  * @date 02/11/2023 11:40:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  */
 ClapTrap::~ClapTrap( void ) {
     std::cout << "ClapTrap " << getName() << " is destroyed!" << std::endl;
+    return ;
 }
 
 /**
@@ -86,10 +87,11 @@ ClapTrap::~ClapTrap( void ) {
  * @details The assignation operator overload is called when the ClapTrap is assigned to another ClapTrap.
  * 
  * @date 23/01/2024 14:30:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
 ClapTrap& ClapTrap::operator=( const ClapTrap& rhs ) {
+    std::cout << "ClapTrap " << getName() << " assignation is born!" << std::endl;
     if (this != &rhs) {
         this->name = rhs.name;
         this->hitPoints = rhs.hitPoints;
@@ -112,7 +114,7 @@ ClapTrap& ClapTrap::operator=( const ClapTrap& rhs ) {
  * @details The constructor is called when the ClapTrap is created.
  * 
  * @date 02/11/2023 11:40:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  */
 ClapTrap::ClapTrap( const std::string& name ) : name(name), hitPoints(10), energyPoints(10), attackDamage(0) {
@@ -136,7 +138,7 @@ ClapTrap::ClapTrap( const std::string& name ) : name(name), hitPoints(10), energ
  * @details The constructor is called when the ClapTrap is created.
  * 
  * @date 23/01/2024 14:30:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
 ClapTrap::ClapTrap( const std::string& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage )\
@@ -163,16 +165,20 @@ ClapTrap::ClapTrap( const std::string& name, unsigned int hitPoints, unsigned in
  * @details If the ClapTrap has insufficient hit points or energy, displays a message that the ClapTrap can't attack.
  * 
  * @date 02/11/2023 11:41:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
  */
 void ClapTrap::attack( const std::string& target ) {
-    if (hitPoints > 0 && energyPoints > 0) {
+    if ( hitPoints == 0 ) {
+        std::cout << "ClapTrap " << getName() << " is dead and cannot attack " << target << "!" << std::endl;
+        return ;
+    } else if ( energyPoints < 1 ) {
+        std::cout << "ClapTrap " << getName() << " has no energy left and cannot attack " << target << "!" << std::endl;
+        return ;
+    } else {
         std::cout << "ClapTrap " << getName() << " attacks " << target << ", causing " << getAttackDamage() << " points of damage!" << std::endl;
         energyPoints--;
-    } else {
-        std::cout << "ClapTrap " << getName() << " can't attack due to low health or energy." << std::endl;
     }
 }
 
@@ -188,17 +194,20 @@ void ClapTrap::attack( const std::string& target ) {
  * @details If the ClapTrap has no hit points left, displays a message that the ClapTrap can't take damage.
  * 
  * @date 02/11/2023 11:42:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
  */
 void ClapTrap::takeDamage( unsigned int amount ) {
-    if (hitPoints > 0) {
-        std::cout << "ClapTrap " << getName() << " takes " << amount << " damage." << std::endl;
-        hitPoints -= amount;
-        setHitPoints(hitPoints);
-    } else {
+    if (hitPoints == 0) {
         std::cout << "ClapTrap " << getName() << " can't take damage because it has no hit points left." << std::endl;
+    } else {
+        std::cout << "ClapTrap " << getName() << " takes " << amount << " points of damage!" << std::endl;
+        hitPoints -= amount;
+        if (hitPoints <= 0 ) {
+            hitPoints = 0;
+            std::cout << "ClapTrap " << getName() << " has no hit points left." << std::endl; 
+        }
     }
 }
 
@@ -215,17 +224,25 @@ void ClapTrap::takeDamage( unsigned int amount ) {
  * @details If the ClapTrap has no hit points left, displays a message that the ClapTrap can't be repaired.
  * 
  * @date 02/11/2023 11:43:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
  */
 void ClapTrap::beRepaired( unsigned int amount ) {
-    if (hitPoints > 0) {
-        std::cout << "ClapTrap " << getName() << " is repaired and gains " << amount << " hit points." << std::endl;
-        hitPoints += amount;
-        energyPoints--;
-    } else {
+    if ( hitPoints == 0 ) { // If the ClapTrap has no hit points left, it can't be repaired.
         std::cout << "ClapTrap " << getName() << " can't be repaired because it has no hit points left." << std::endl;
+    } else if ( hitPoints == 10 ) { // If the ClapTrap has full hit points, it can't be repaired.
+        std::cout << "ClapTrap " << getName() << " has already full hit points." << std::endl;
+    } else if ( energyPoints < 1 ) { // If the ClapTrap has no energy left, it can't be repaired.
+        std::cout << "ClapTrap " << getName() << " has no energy left and cannot be repaired." << std::endl;
+    } else {
+        std::cout << "ClapTrap " << getName() << " is repaired by " << amount << " points!" << std::endl;
+        hitPoints += amount;
+        if ( hitPoints > 10 ) {
+            hitPoints = 10;
+            std::cout << "ClapTrap " << getName() << " has full hit points." << std::endl;
+        }
+        energyPoints--;
     }
 }
 
@@ -242,7 +259,7 @@ void ClapTrap::beRepaired( unsigned int amount ) {
  * @return void
  * 
  * @date 02/11/2023 12:30:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -260,7 +277,7 @@ void ClapTrap::setName( const std::string& name ) {
  * @return void
  * 
  * @date 02/11/2023 12:31:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -278,7 +295,7 @@ void ClapTrap::setHitPoints( unsigned int hitPoints ) {
  * @return void
  * 
  * @date 02/11/2023 12:32:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -296,7 +313,7 @@ void ClapTrap::setEnergyPoints( unsigned int energyPoints ) {
  * @return void
  * 
  * @date 02/11/2023 12:33:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -317,7 +334,7 @@ void ClapTrap::setAttackDamage( unsigned int attackDamage ) {
  * @return The name of the ClapTrap.
  * 
  * @date 02/11/2023 12:33:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -335,7 +352,7 @@ std::string ClapTrap::getName( void ) const {
  * @return The current hit points.
  *
  * @date 02/11/2023 12:34:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
  */
@@ -353,7 +370,7 @@ unsigned int ClapTrap::getHitPoints( void ) const {
  * @return The current energy points.
  * 
  * @date 02/11/2023 12:35:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -371,7 +388,7 @@ unsigned int ClapTrap::getEnergyPoints( void ) const {
  * @return The current attack damage.
  * 
  * @date 02/11/2023 12:36:00
- * @dir ex00/ClapTrapClass/src
+ * @dir ex01/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
