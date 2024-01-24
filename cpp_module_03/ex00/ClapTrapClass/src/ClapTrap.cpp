@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:53 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 17:26:27 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:49:14 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,17 +145,6 @@ ClapTrap::ClapTrap( const std::string& name, unsigned int hitPoints, unsigned in
     return ;
     
 }
-/**
- * ClapTrap::ClapTrap(const std::string& name) is the constructor declaration, specifying that it takes a const std::string& parameter named name.
- * 
- *  : starts the initializer list.
- * 
- * Name(name), HitPoints(10), EnergyPoints(10), and AttackDamage(0) are member variable initializations. They set the initial values of the class's private attributes. In this case:
- *  - Name(name) initializes the Name attribute with the value of the name parameter passed to the constructor.
- *  - HitPoints(10) initializes the HitPoints attribute with a default value of 10.
- *  - EnergyPoints(10) initializes the EnergyPoints attribute with a default value of 10.
- *  - AttackDamage(0) initializes the AttackDamage attribute with a default value of 0.
-*/
 
 // MEMBER FUNCTIONS
 // ================
