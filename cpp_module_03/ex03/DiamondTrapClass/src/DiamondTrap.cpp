@@ -1,19 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 18:30:26 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/26 19:09:03 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/01/26 18:37:51 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/01/26 18:37:52 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
-
-int main( void ) {
-	return ;
-}

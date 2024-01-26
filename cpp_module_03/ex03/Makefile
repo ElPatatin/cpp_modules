@@ -73,18 +73,25 @@ CP		= cp -f
 
 # -=-=-=-=-	PATH -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-
+# Clap Trap Class Folder
 CTC_DIR := ClapTrapClass/
 CTC_SRC_DIR	:= $(CTC_DIR)src/
 CTC_INC_DIR	:= $(CTC_DIR)inc/
 
+# Scav Trap Class Folder
 STC_DIR := ScavTrapClass/
 STC_SRC_DIR	:= $(STC_DIR)src/
 STC_INC_DIR	:= $(STC_DIR)inc/
 
+# Frag Trap Class Folder
 FTC_DIR := FragTrapClass/
 FTC_SRC_DIR	:= $(FTC_DIR)src/
 FTC_INC_DIR	:= $(FTC_DIR)inc/
+
+# Diamond Trap Class Folder
+DRC_DIR	:= DiamondTrapClass/
+DTC_SRC_DIR	:= $(DRC_DIR)src/
+DTC_INC_DIR	:= $(DRC_DIR)inc/
 
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
@@ -98,18 +105,25 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(CTC_INC_DIR) -I./$(STC_INC_DIR) -I./$(FTC_INC_DIR)
+INCLUDE	:= -I./$(CTC_INC_DIR) -I./$(STC_INC_DIR) -I./$(FTC_INC_DIR) -I./$(DTC_INC_DIR)
 
+# Clap Trap Class Files
 CTC_SRC_FLS = ClapTrap.cpp
 
+# Scav Trap Class Files
 STC_SRC_FLS = ScavTrap.cpp
 
+# Frag Trap Class Files
 FTC_SRC_FLS = FragTrap.cpp
 
-SRCS	= main.cpp
+# Diamond Trap Class Files
+DTC_SRC_FLS = DiamondTrap.cpp
+
+SRCS	= ./main.cpp
 SRCS	+= $(addprefix $(CTC_SRC_DIR), $(CTC_SRC_FLS))
 SRCS	+= $(addprefix $(STC_SRC_DIR), $(STC_SRC_FLS))
 SRCS	+= $(addprefix $(FTC_SRC_DIR), $(FTC_SRC_FLS))
+SRCS	+= $(addprefix $(DTC_SRC_DIR), $(DTC_SRC_FLS))
 
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
