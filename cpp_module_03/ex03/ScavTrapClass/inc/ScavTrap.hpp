@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:16:46 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/26 19:01:34 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/28 14:56:15 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
     public:
         // DEFAULT CONSTRUCTORS AND DESTRUCTORS
@@ -31,14 +31,17 @@ class ScavTrap : public ClapTrap
 
         // MEMBER FUNCTIONS
         // ================
-        void    attack( const std::string& target );
 
         void    guardGate( void );
 
     private:
         static const unsigned int hitPoints = 100;
-        static const unsigned int energyPoints = 50;
         static const unsigned int attackDamage = 20;
+
+    protected:
+        void    attack( const std::string& target );
+        static const unsigned int energyPoints = 50;
+
 };
 
 #endif
