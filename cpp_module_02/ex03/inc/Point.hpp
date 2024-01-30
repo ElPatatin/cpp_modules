@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:32:48 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 11:31:45 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:01:24 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@
 class Point {
 
     public:
-
-        // Constructors
+        // CONSTRUCTORS AND DESTRUCTORS
+        // ============================
         Point( void );
-
         Point( Point const & src );
-
         ~Point( void );
 
-        Point &operator=(const Point &other);
-        
+        // CONSTRUCTORS WITH PARAMETERS
+        // ============================ 
         Point( float const x, float const y );
-
         Point( float const x, float const y, float const aux );
         
-        // Getters
+        // OPERATOR OVERLOADS
+        // ==================
+        Point &operator=(const Point &other);
+
+        // GETTERS AND SETTERS
+        // ===================
         Fixed getX( void ) const;
         Fixed getY( void ) const;
 

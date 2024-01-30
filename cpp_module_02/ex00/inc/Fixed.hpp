@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 10:59:07 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:55:19 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,19 @@
 class Fixed
 {
     public:
-        // Default constructor
+        // CONSTRUCTORS AND DESTRUCTORS
+        // ============================
         Fixed( void );
-
-        // Copy constructor
         Fixed( const Fixed & src );
-
-        // Destructor
         ~Fixed( void );
 
-        // Copy assignment operator
+        // OPERATORS
+        // =========
         Fixed & operator=( const Fixed & rhs );
 
-        // Returns the raw value of the fixed point value
+        // GETTERS AND SETTERS
+        // ===================
         int getRawBits( void ) const;
-
-        // Sets the raw value of the fixed point value
         void setRawBits( int const raw );
 
     private:

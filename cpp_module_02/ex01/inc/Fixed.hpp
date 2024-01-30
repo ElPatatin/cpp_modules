@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 11:13:12 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:56:36 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,29 @@
 class Fixed
 {
     public:
+        // CONSTRUCTORS AND DESTRUCTORS
+        // ============================
         Fixed( void );
-
         Fixed( const Fixed & src );
-
         ~Fixed( void );
 
-        Fixed & operator=( const Fixed & rhs );
-
-        // Constructor to convert from an integer
+        // CONSTRUCTORS WITH PARAMETERS
+        // ============================
         Fixed( int const value );
 
-        // Constructor to convert from a floating-point number
+        // OPERATORS
+        // =========
+        Fixed & operator=( const Fixed & rhs );
         Fixed( float const value );
 
+        // GETTERS AND SETTERS
+        // ===================
         int getRawBits( void ) const;
-
         void setRawBits( int const raw );
 
-        // Member function to convert to a floating-point value
+        // MEMBER FUNCTIONS
+        // ================
         float toFloat( void ) const;
-
-        // Member function to convert to an integer value
         int toInt( void ) const;
 
     private:

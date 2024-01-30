@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 08:43:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 11:20:50 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:01:35 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,21 @@
 class Fixed
 {
     public:
+        // CONSTRUCTORS AND DESTRUCTORS
+        // ============================
         Fixed( void );
-
         Fixed( const Fixed & src );
-
         ~Fixed( void );
 
-        Fixed & operator=( const Fixed & rhs );
-
+        // CONSTRUCTORS WITH PARAMETERS
+        // ============================
         Fixed( int const value );
-
         Fixed( float const value );
 
-        int getRawBits( void ) const;
-
-        void setRawBits( int const raw );
-
-        float toFloat( void ) const;
-
-        int toInt( void ) const;
 
         // OPERATOR OVERLOADS
-        // ======================
+        // ==================
+        Fixed & operator=( const Fixed & rhs );
     
         // Overloaded comparison operators
         bool operator>(const Fixed &rhs) const;
@@ -49,6 +42,7 @@ class Fixed
         bool operator<=(const Fixed &rhs) const;
         bool operator==(const Fixed &rhs) const;
         bool operator!=(const Fixed &rhs) const;
+
 
         // Overloaded arithmetic operators
         Fixed operator+(const Fixed &rhs) const;
@@ -62,10 +56,18 @@ class Fixed
         Fixed &operator--();       // pre-decrement
         Fixed operator--(int);     // post-decrement
 
+        // GETTERS AND SETTERS
+        // ===================
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
+
+        // MEMBER FUNCTIONS
+        // ================
+        float toFloat( void ) const;
+        int toInt( void ) const;
+
         // STATIC MEMBER FUNCTIONS
         // =======================
-        
-        // Static member functions
         static const Fixed &min(const Fixed &a, const Fixed &b);
         static const Fixed &min(const Fixed &a, const Fixed &b, const Fixed &c);
         static const Fixed &max(const Fixed &a, const Fixed &b);
