@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:56 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/26 18:23:36 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:06:51 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,28 @@ class ClapTrap
     public:
         // DEFAULT CONSTRUCTORS AND DESTRUCTORS
         // ====================================
+
         ClapTrap( void );
         ClapTrap( const ClapTrap& src );
         ~ClapTrap();
         ClapTrap& operator=( const ClapTrap& rhs );
         
         // CONSTRUCTOR WITH PARAMETERS
-		// ===========================
+        // ===========================
+
         ClapTrap( const std::string& name );
         ClapTrap( const std::string& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage );
         
         // MEMBER FUNCTIONS
         // ================
-        // Member function to attack a target
+
         void    attack(const std::string& target);
-        
-        // Member function to take damage
         void    takeDamage(unsigned int amount);
-        
-        // Member function to be repaired
         void    beRepaired(unsigned int amount);
 
         // SETTERS
         // =======
+
         void    setName( const std::string& name );
         void    setHitPoints( unsigned int hitPoints );
         void    setEnergyPoints( unsigned int energyPoints );
@@ -52,6 +51,7 @@ class ClapTrap
 
         // GETTERS
         // =======
+
         std::string getName( void ) const;
         unsigned int    getHitPoints( void ) const;
         unsigned int    getEnergyPoints( void ) const;

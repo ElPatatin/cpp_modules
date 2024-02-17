@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:56 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 17:26:55 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:06:46 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,39 +20,38 @@
 class ClapTrap
 {
     public:
-        // Default constructor
-        ClapTrap( void );
-        
-        // Copy constructor
-        ClapTrap( const ClapTrap& src );
-        
-        // Destructor
-        ~ClapTrap();
+        // DEFAULT CONSTRUCTORS AND DESTRUCTORS
+        // ====================================
 
-        // Assignation operator overload
+        ClapTrap( void );
+        ClapTrap( const ClapTrap& src );
+        ~ClapTrap();
         ClapTrap& operator=( const ClapTrap& rhs );
-        
-        // Constructor with parameters
+
+        // CONSTRUCTOR WITH PARAMETERS
+        // ===========================
+
         ClapTrap( const std::string& name );
         ClapTrap( const std::string& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage );
         
+        // MEMBER FUNCTIONS
+        // ================
 
-        // Member function to attack a target
         void attack(const std::string& target);
-        
-        // Member function to take damage
         void takeDamage(unsigned int amount);
-        
-        // Member function to be repaired
         void beRepaired(unsigned int amount);
 
-        // Setters
+        // SETTERS
+        // =======
+
         void setName( const std::string& name );
         void setHitPoints( unsigned int hitPoints );
         void setEnergyPoints( unsigned int energyPoints );
         void setAttackDamage( unsigned int attackDamage );        
 
-        // Getters
+        // GETTERS
+        // =======
+
         std::string getName( void ) const;
         unsigned int getHitPoints( void ) const;
         unsigned int getEnergyPoints( void ) const;

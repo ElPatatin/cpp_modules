@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:37:53 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/17 12:50:38 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:16:28 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
     public:
         // DEFAULT CONSTRUCTORS AND DESTRUCTORS
         // ====================================
+
         DiamondTrap( void );
         DiamondTrap( DiamondTrap const & src );
         ~DiamondTrap();
@@ -40,18 +41,22 @@ class DiamondTrap : public ScavTrap, public FragTrap
 
         // CONSTRUCTOR WITH PARAMETERS
 		// ===========================
+
         DiamondTrap(std::string name);
 
 		// MEMBER FUNCTIONS
         // ================
+
         void    whoAmI( void );
 
         // OVERLOADS
         // =========
+
         void    attack(std::string const & target);
 
         // ACCESSORS
         // =========
+
         unsigned int    getHitPoints( void ) const;
         unsigned int    getEnergyPoints( void ) const;
         unsigned int    getAttackDamage( void ) const;

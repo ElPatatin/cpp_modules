@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:56:53 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/24 16:38:02 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:14:11 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @details The default constructor is called when the ClapTrap is created.
  * 
  * @date 23/01/2024 14:30:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
 ClapTrap::ClapTrap( void ) : name("Default"), hitPoints(10), energyPoints(10), attackDamage(0) {
@@ -46,7 +46,7 @@ ClapTrap::ClapTrap( void ) : name("Default"), hitPoints(10), energyPoints(10), a
  * @details The copy constructor is called when the ClapTrap is created from another ClapTrap.
  * 
  * @date 23/01/2024 14:30:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
 ClapTrap::ClapTrap( const ClapTrap& src ) {
@@ -67,7 +67,7 @@ ClapTrap::ClapTrap( const ClapTrap& src ) {
  * @details The destructor is called when the ClapTrap is destroyed.
  * 
  * @date 02/11/2023 11:40:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  */
 ClapTrap::~ClapTrap( void ) {
@@ -87,7 +87,7 @@ ClapTrap::~ClapTrap( void ) {
  * @details The assignation operator overload is called when the ClapTrap is assigned to another ClapTrap.
  * 
  * @date 23/01/2024 14:30:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
 ClapTrap& ClapTrap::operator=( const ClapTrap& rhs ) {
@@ -114,7 +114,7 @@ ClapTrap& ClapTrap::operator=( const ClapTrap& rhs ) {
  * @details The constructor is called when the ClapTrap is created.
  * 
  * @date 02/11/2023 11:40:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  */
 ClapTrap::ClapTrap( const std::string& name ) : name(name), hitPoints(10), energyPoints(10), attackDamage(0) {
@@ -138,7 +138,7 @@ ClapTrap::ClapTrap( const std::string& name ) : name(name), hitPoints(10), energ
  * @details The constructor is called when the ClapTrap is created.
  * 
  * @date 23/01/2024 14:30:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
 */
 ClapTrap::ClapTrap( const std::string& name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage )\
@@ -165,7 +165,7 @@ ClapTrap::ClapTrap( const std::string& name, unsigned int hitPoints, unsigned in
  * @details If the ClapTrap has insufficient hit points or energy, displays a message that the ClapTrap can't attack.
  * 
  * @date 02/11/2023 11:41:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
  */
@@ -194,7 +194,7 @@ void ClapTrap::attack( const std::string& target ) {
  * @details If the ClapTrap has no hit points left, displays a message that the ClapTrap can't take damage.
  * 
  * @date 02/11/2023 11:42:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
  */
@@ -224,7 +224,7 @@ void ClapTrap::takeDamage( unsigned int amount ) {
  * @details If the ClapTrap has no hit points left, displays a message that the ClapTrap can't be repaired.
  * 
  * @date 02/11/2023 11:43:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
  */
@@ -259,7 +259,7 @@ void ClapTrap::beRepaired( unsigned int amount ) {
  * @return void
  * 
  * @date 02/11/2023 12:30:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -277,7 +277,7 @@ void ClapTrap::setName( const std::string& name ) {
  * @return void
  * 
  * @date 02/11/2023 12:31:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -295,7 +295,7 @@ void ClapTrap::setHitPoints( unsigned int hitPoints ) {
  * @return void
  * 
  * @date 02/11/2023 12:32:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -313,7 +313,7 @@ void ClapTrap::setEnergyPoints( unsigned int energyPoints ) {
  * @return void
  * 
  * @date 02/11/2023 12:33:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -334,7 +334,7 @@ void ClapTrap::setAttackDamage( unsigned int attackDamage ) {
  * @return The name of the ClapTrap.
  * 
  * @date 02/11/2023 12:33:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -352,7 +352,7 @@ std::string ClapTrap::getName( void ) const {
  * @return The current hit points.
  *
  * @date 02/11/2023 12:34:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
  */
@@ -370,7 +370,7 @@ unsigned int ClapTrap::getHitPoints( void ) const {
  * @return The current energy points.
  * 
  * @date 02/11/2023 12:35:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */
@@ -388,7 +388,7 @@ unsigned int ClapTrap::getEnergyPoints( void ) const {
  * @return The current attack damage.
  * 
  * @date 02/11/2023 12:36:00
- * @dir ex01/ClapTrapClass/src
+ * @dir ex02/ClapTrapClass/src
  * @file ClapTrap.cpp
  * @public
 */

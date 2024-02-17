@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:18:38 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/28 14:56:09 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:17:53 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class FragTrap : virtual public ClapTrap
 	public:
 	    // DEFAULT CONSTRUCTORS AND DESTRUCTORS
         // ====================================
+
 		FragTrap( void );
 		FragTrap( const FragTrap& src );
 		~FragTrap( void );
@@ -27,10 +28,12 @@ class FragTrap : virtual public ClapTrap
 
         // CONSTRUCTOR WITH PARAMETERS
 		// ===========================
+
 		FragTrap( const std::string& name );
 
 		// MEMBER FUNCTIONS
         // ================
+
 		void	highFivesGuys( void );
 		
 	private:

@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:38:37 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/17 12:53:52 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:00:06 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,29 @@ int main( void ) {
     std::cout << "ClapTrap Name: " << diamondTrapDefault.getClapTrapName() << std::endl;
     diamondTrapDefault.whoAmI();  // Testing whoAmI member function
     diamondTrapDefault.attack("Target");  // Testing attack member function
+    std::cout << "=========================\n";
+
+    // Test Copy Constructor
+    DiamondTrap diamondTrapCopy(diamondTrapDefault);
+    std::cout << "Copy Constructor Test:\n";
+    std::cout << "Hit Points: " << diamondTrapCopy.getHitPoints() << std::endl;
+    std::cout << "Energy Points: " << diamondTrapCopy.getEnergyPoints() << std::endl;
+    std::cout << "Attack Damage: " << diamondTrapCopy.getAttackDamage() << std::endl;
+    std::cout << "ClapTrap Name: " << diamondTrapCopy.getClapTrapName() << std::endl;
+    diamondTrapCopy.whoAmI();
+    diamondTrapCopy.attack("AnotherTarget");
+    std::cout << "=========================\n";
+
+    // Test Assignment Operator
+    DiamondTrap diamondTrapAssign;
+    diamondTrapAssign = diamondTrapCopy;
+    std::cout << "Assignment Operator Test:\n";
+    std::cout << "Hit Points: " << diamondTrapAssign.getHitPoints() << std::endl;
+    std::cout << "Energy Points: " << diamondTrapAssign.getEnergyPoints() << std::endl;
+    std::cout << "Attack Damage: " << diamondTrapAssign.getAttackDamage() << std::endl;
+    std::cout << "ClapTrap Name: " << diamondTrapAssign.getClapTrapName() << std::endl;
+    diamondTrapAssign.whoAmI();
+    diamondTrapAssign.attack("AnotherTarget");
     std::cout << "=========================\n";
 
     // Test Parameterized Constructor

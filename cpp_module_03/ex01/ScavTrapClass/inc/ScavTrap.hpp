@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 12:16:46 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/23 17:57:15 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:08:58 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,23 @@
 class ScavTrap : public ClapTrap
 {
     public:
-        // Default constructor
+        // DEFAULT CONSTRUCTORS AND DESTRUCTORS
+        // ====================================
+
         ScavTrap( void );
-        
-        // Copy constructor
         ScavTrap( const ScavTrap& src );
-
-        // Destructor
         ~ScavTrap();
-
-        // Assignation operator overload
         ScavTrap& operator=( const ScavTrap& rhs );
 
-        // Constructor with parameters
+        // CONSTRUCTOR WITH PARAMETERS
+        // ===========================
+
         ScavTrap( const std::string& name );
 
-        // Member function to attack a target
-        void attack(const std::string& target);
+        // MEMBER FUNCTIONS
+        // ================
 
+        void attack(const std::string& target);
         void guardGate( void );
 
     private:
