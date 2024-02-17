@@ -3,18 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:38:37 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/28 15:22:47 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 12:53:52 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 int main( void ) {
-    DiamondTrap diamondTrap;
-    DiamondTrap diamondTrap2;
+    // Test Default Constructor
+    DiamondTrap diamondTrapDefault;
+    std::cout << "Default Constructor Test:\n";
+    std::cout << "Hit Points: " << diamondTrapDefault.getHitPoints() << std::endl;
+    std::cout << "Energy Points: " << diamondTrapDefault.getEnergyPoints() << std::endl;
+    std::cout << "Attack Damage: " << diamondTrapDefault.getAttackDamage() << std::endl;
+    std::cout << "ClapTrap Name: " << diamondTrapDefault.getClapTrapName() << std::endl;
+    diamondTrapDefault.whoAmI();  // Testing whoAmI member function
+    diamondTrapDefault.attack("Target");  // Testing attack member function
+    std::cout << "=========================\n";
+
+    // Test Parameterized Constructor
+    DiamondTrap customDiamond("CustomDiamond");
+    std::cout << "Parameterized Constructor Test:\n";
+    std::cout << "Hit Points: " << customDiamond.getHitPoints() << std::endl;
+    std::cout << "Energy Points: " << customDiamond.getEnergyPoints() << std::endl;
+    std::cout << "Attack Damage: " << customDiamond.getAttackDamage() << std::endl;
+    std::cout << "ClapTrap Name: " << customDiamond.getClapTrapName() << std::endl;
+    customDiamond.whoAmI();
+    customDiamond.attack("AnotherTarget");
+    std::cout << "=========================\n";
     
     return 0;
 }

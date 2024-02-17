@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:37:53 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/28 15:19:18 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 12:50:38 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ class DiamondTrap : public ScavTrap, public FragTrap
 
     private:
         std::string     name;
-        unsigned int    hitPoints;
-        unsigned int    energyPoints;
-        unsigned int    attackDamage;
 };
 
 #endif

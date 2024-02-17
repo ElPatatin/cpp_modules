@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:19:06 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/26 19:06:32 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/17 12:54:55 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ FragTrap::FragTrap( const FragTrap& src ) : ClapTrap( src ) {
 }
 
 FragTrap::~FragTrap( void ) {
-    std::cout << "ScavTrap " << this->getName() << " is destroyed!" << std::endl;
+    std::cout << "FragTrap " << this->getName() << " is destroyed!" << std::endl;
     return ;
 }
 
