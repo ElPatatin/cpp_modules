@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:08:48 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/28 19:09:13 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:15:05 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class Cat : public Animal {
 
         // MEMBER FUNCTIONS
         // ================
-        virtual void makeSound( void ) const override;
+        virtual void makeSound( void ) const;
 };
 
 #endif

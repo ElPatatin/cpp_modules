@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
+#    By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/01/28 20:01:52 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/02/21 17:20:39 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ WAC_SRC_DIR	:= $(WAC_DIR)src/
 WAC_INC_DIR	:= $(WAC_DIR)inc/
 
 # Wrong Animal Class Folder
-WCC_DIR	:= WrongAnimalClass/
+WCC_DIR	:= WrongCatClass/
 WCC_SRC_DIR	:= $(WCC_DIR)src/
 WCC_INC_DIR	:= $(WCC_DIR)inc/
 
@@ -113,22 +113,22 @@ endif
 INCLUDE	:= -I./$(ANC_INC_DIR) -I./$(DOC_INC_DIR) -I./$(CAC_INC_DIR) -I./$(WAC_INC_DIR) -I./$(WCC_INC_DIR)
 
 # Animal Class Files
-ANC_SRC_FLS = ClapTrap.cpp
+ANC_SRC_FLS = Animal.cpp
 
 # Dog Class Files
-DOC_SRC_FLS = ScavTrap.cpp
+DOC_SRC_FLS = Dog.cpp
 
 # Cat Class Files
-CAC_SRC_FLS = FragTrap.cpp
+CAC_SRC_FLS = Cat.cpp
 
 # Wrong Animal Class Files
-WAC_SRC_FLS = DiamondTrap.cpp
+WAC_SRC_FLS = WrongAnimal.cpp
 
 # Wrong Cat Class Files
-WCC_SRC_FLS = main.cpp
+WCC_SRC_FLS = WrongCat.cpp
 
 # Main Files
-SRCS	= ./main.cpp
+SRCS	+= ./main.cpp
 SRCS	+= $(addprefix $(ANC_SRC_DIR), $(ANC_SRC_FLS))
 SRCS	+= $(addprefix $(DOC_SRC_DIR), $(DOC_SRC_FLS))
 SRCS	+= $(addprefix $(CAC_SRC_DIR), $(CAC_SRC_FLS))
