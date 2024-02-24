@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:53:04 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/28 19:03:25 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/24 13:22:32 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ class Animal {
         // ============================
         Animal( void );
         Animal( Animal const &src );
+        /**
+         * The virtual destructor is a destructor that is declared with the
+         * virtual attribute. This makes sure that the destructor is called
+         * for the most-derived class in a class hierarchy.
+        */
         virtual ~Animal( void );
 
         // CONSTRUCTORS WITH PARAMETERS

@@ -3,34 +3,117 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:00:55 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/28 20:25:15 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/24 13:26:29 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog( void ) : Animal( "Dog" ) {
+/**
+ * @name Dog (default constructor)
+ * @brief Constructor implementation.
+ * 
+ * Implementation of the default constructor of the Dog class.
+ * 
+ * @param void
+ * @return void
+ * 
+ * @details The default constructor initializes the type attribute to "Dog".
+ * 
+ * @date 24/02/2024 13:00:00
+ * @dir ex00/DogClass/src
+ * @file Dog.cpp
+ */
+Dog::Dog( void ) : Animal( "Dog" )
+{
+    std::cout << "Dog default constructor called" << std::endl;
     return ;
 }
 
-Dog::Dog( Dog const &src ) : Animal( src ) {
+/**
+ * @name Dog (copy constructor)
+ * @brief Constructor implementation.
+ * 
+ * Implementation of the copy constructor of the Dog class.
+ * 
+ * @param src The object to be copied.
+ * @return void
+ * 
+ * @details The copy constructor initializes the type attribute to the type of the
+ *          object to be copied.
+ * 
+ * @date 24/02/2024 13:00:00
+ * @dir ex00/DogClass/src
+ * @file Dog.cpp
+ */
+Dog::Dog( Dog const &src ) : Animal( src )
+{
+    std::cout << "Dog copy constructor called" << std::endl;
     return ;
 }
 
-Dog::~Dog( void ) {
+/**
+ * @name ~Dog (destructor)
+ * @brief Destructor implementation.
+ * 
+ * Implementation of the destructor of the Dog class.
+ * 
+ * @param void
+ * @return void
+ * 
+ * @date 24/02/2024 13:00:00
+ * @dir ex00/DogClass/src
+ * @file Dog.cpp
+ */
+Dog::~Dog( void )
+{
+    std::cout << "Dog destructor called" << std::endl;
     return ;
 }
 
-Dog &Dog::operator=( Dog const &rhs ) {
+/**
+ * @name operator= (assignment operator)
+ * @brief Assignment operator implementation.
+ * 
+ * Implementation of the assignment operator of the Dog class.
+ * 
+ * @param rhs The object to be assigned.
+ * @return Dog & The reference to the assigned object.
+ * 
+ * @details The assignment operator assigns the type attribute of the object to the
+ *          type attribute of the object to be assigned.
+ * 
+ * @date 24/02/2024 13:00:00
+ * @dir ex00/DogClass/src
+ * @file Dog.cpp
+ */
+Dog &Dog::operator=( Dog const &rhs )
+{
+    std::cout << "Dog assignment operator called" << std::endl;
     if (this != &rhs) {
         this->type = rhs.getType();
     }
     return *this;
 }
 
+/**
+ * @name makeSound
+ * @brief Make sound implementation.
+ * 
+ * Implementation of the makeSound member function of the Dog class.
+ * 
+ * @param void
+ * @return void
+ * 
+ * @details The makeSound member function prints the sound of the Dog object.
+ * 
+ * @date 24/02/2024 13:00:00
+ * @dir ex00/DogClass/src
+ * @file Dog.cpp
+ */
 void Dog::makeSound( void ) const {
     std::cout << "Woof woof! (menor que tres)" << std::endl;
     return ;

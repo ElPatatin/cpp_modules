@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:00:52 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/28 20:25:44 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:11:07 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
 # define DOG_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
 
-class Dog : public Animal {
+class Dog : public AAnimal {
     public:
         // CONSTRUCTORS AND DESTRUCTORS
         // ============================
@@ -30,7 +30,13 @@ class Dog : public Animal {
 
         // MEMBER FUNCTIONS
         // ================
-        virtual void makeSound( void ) const override;
+        virtual void    makeSound( void ) const;
+        void            printIdeas( void ) const;
+
+        // GETTERS AND SETTERS
+        // ====================
+        void            setIdea( const std::string idea );
+        std::string     getIdea( int index ) const;
 
     private:
         Brain *brain;

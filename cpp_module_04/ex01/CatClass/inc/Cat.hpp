@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:08:48 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/01/28 20:24:46 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:45:09 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,13 @@ class Cat : public Animal {
 
         // MEMBER FUNCTIONS
         // ================
-        virtual void makeSound( void ) const override;
+        virtual void    makeSound( void ) const;
+        void            printIdeas( void ) const;
+
+        // GETTERS AND SETTERS
+        // ====================
+        void            setIdea( const std::string idea );
+        std::string     getIdea( int index ) const;
 
     private:
         Brain *brain;
