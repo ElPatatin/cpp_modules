@@ -1,13 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMateria.cpp                                       :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 17:24:39 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/24 17:24:42 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/02/25 12:56:01 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/02/25 12:56:32 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IMateria.hpp"
+#ifndef CURE_HPP
+# define CURE_HPP
+
+# include "AMateria.hpp"
+
+class Cure
+{
+    public:
+};
+
+#endif

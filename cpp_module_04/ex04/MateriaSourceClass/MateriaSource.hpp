@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CMateria.hpp                                       :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 17:25:00 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/24 17:25:08 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/02/25 12:59:41 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/02/25 13:00:10 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMATERIA_HPP
-# define CMATERIA_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
-# include <iostream>
-
-class CMateria
+class MateriaSource
 {
-	public:
-
-	private:
+    public:
 
 };
 
+#endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+         #
+#    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/02/24 17:22:09 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/02/25 13:02:20 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
 
 # Abstract Materia Folder
-ABS_DIR	:= ./AMateriaClass/
+ABS_DIR	:= ./AbstractMateriaClass/
 
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
@@ -91,10 +91,12 @@ endif
 INCLUDE	:= -I./
 
 # Abstract Materia Files
-
+ABS_SRC := AMateria.cpp
 
 # Main Files
 SRCS	+= ./main.cpp
+
+SRCS	+= $(addprefix $(ABS_DIR), $(ABS_SRC))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))

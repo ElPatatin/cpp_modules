@@ -1,13 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.cpp                                      :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 12:36:42 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/25 12:36:48 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/02/25 12:56:43 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/02/25 12:57:03 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Character.hpp"
+#ifndef ICE_HPP
+# define ICE_HPP
+
+# include "AMateria.hpp"
+
+class Ice
+{
+    public:
+
+};
+
+#endif

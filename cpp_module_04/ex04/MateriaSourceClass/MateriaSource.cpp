@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMateria.hpp                                       :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 17:24:45 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/24 17:24:54 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/02/25 12:59:52 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/02/25 12:59:54 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMATERIA_HPP
-# define IMATERIA_HPP
-
-# include <iostream>
-
-class IMateria
-{
-	public:
-
-	private:
-
-};
-
-#endif
+#include "MateriaSource.hpp"
