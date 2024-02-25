@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 12:56:43 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/25 12:57:03 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:00:53 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,26 @@
 
 # include "AMateria.hpp"
 
-class Ice
+class Ice : public AMateria
 {
     public:
+        // CONSTRUCTORS AND DESTRUCTORS
+        // ============================
 
+        Ice();
+        Ice( Ice const & src );
+        ~Ice();
+
+        // OPERATORS OVERLOAD
+        // ==================
+
+        Ice & operator=( Ice const & src );
+
+        // MEMBER FUNCTIONS
+        // ================
+
+        AMateria*	clone() const;
+        void		use( ICharacter & target );
 };
 
 #endif

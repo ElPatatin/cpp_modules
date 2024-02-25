@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/02/25 13:02:20 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/02/25 19:15:07 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,21 @@ DEP_DIR	:= .deps/
 # Abstract Materia Folder
 ABS_DIR	:= ./AbstractMateriaClass/
 
+# Interface Folder
+INT_DIR	:= ./Interfaces/
+
+# Character Class Folder
+CHR_DIR	:= ./CharacterClass/
+
+# MateriaSource Class Folder
+MTS_DIR	:= ./MateriaSourceClass/
+
+# Ice Class Folder
+ICE_DIR	:= ./IceClass/
+
+# Cure Class Folder
+CUR_DIR	:= ./CureClass/
+
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
 ifeq ($(LANG), C)
@@ -90,13 +105,35 @@ endif
 
 INCLUDE	:= -I./
 
+# -----------------------------  SOURCE FILES  -------------------------------- #
+
 # Abstract Materia Files
 ABS_SRC := AMateria.cpp
 
-# Main Files
-SRCS	+= ./main.cpp
+# Interface Files
+INT_SRC	:= ICharacter.cpp \
+		IMateriaSource.cpp\
 
+# Character Class Files
+CHR_SRC	:= Character.cpp
+
+# MateriaSource Class Files
+MTS_SRC	:= MateriaSource.cpp
+
+# Ice Class Files
+ICE_SRC	:= Ice.cpp
+
+# Cure Class Files
+CUR_SRC	:= Cure.cpp
+
+# -----------------------------  MAIN FILES  ---------------------------------- #
+SRCS	+= ./main.cpp
 SRCS	+= $(addprefix $(ABS_DIR), $(ABS_SRC))
+SRCS	+= $(addprefix $(INT_DIR), $(INT_SRC))
+SRCS	+= $(addprefix $(CHR_DIR), $(CHR_SRC))
+SRCS	+= $(addprefix $(MTS_DIR), $(MTS_SRC))
+SRCS	+= $(addprefix $(ICE_DIR), $(ICE_SRC))
+SRCS	+= $(addprefix $(CUR_DIR), $(CUR_SRC))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))

@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 12:56:01 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/25 12:56:32 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:00:59 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,26 @@
 
 # include "AMateria.hpp"
 
-class Cure
+class Cure : public AMateria
 {
     public:
+        // CONSTRUCTORS AND DESTRUCTORS
+        // ============================
+
+        Cure();
+        Cure( Cure const & src );
+        ~Cure();
+
+        // OPERATORS OVERLOAD
+        // ==================
+
+        Cure & operator=( Cure const & src );
+
+        // MEMBER FUNCTIONS
+        // ================
+
+        AMateria*	clone() const;
+        void		use( ICharacter & target );
 };
 
 #endif
