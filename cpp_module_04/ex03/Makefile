@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
+#    By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/02/25 19:15:07 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/02/28 16:07:50 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,33 +103,34 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./
+INCLUDE	:= -I./$(ABS_DIR) -I./$(INT_DIR) -I./$(CHR_DIR) -I./$(MTS_DIR) -I./$(ICE_DIR) -I./$(CUR_DIR)
 
 # -----------------------------  SOURCE FILES  -------------------------------- #
 
 # Abstract Materia Files
-ABS_SRC := AMateria.cpp
-
-# Interface Files
-INT_SRC	:= ICharacter.cpp \
-		IMateriaSource.cpp\
+ABS_SRC := AMateriaCD.cpp \
+		AMateriaGS.cpp \
 
 # Character Class Files
-CHR_SRC	:= Character.cpp
+CHR_SRC	:= CharacterCD.cpp \
+		CharacterGS.cpp \
+		CharacterMF.cpp
 
 # MateriaSource Class Files
-MTS_SRC	:= MateriaSource.cpp
+MTS_SRC	:= MateriaSourceCD.cpp \
+		MateriaSourceMF.cpp \
 
 # Ice Class Files
-ICE_SRC	:= Ice.cpp
+ICE_SRC	:= IceCD.cpp \
+		IceMF.cpp
 
 # Cure Class Files
-CUR_SRC	:= Cure.cpp
+CUR_SRC	:= CureCD.cpp \
+		CureMF.cpp
 
 # -----------------------------  MAIN FILES  ---------------------------------- #
 SRCS	+= ./main.cpp
 SRCS	+= $(addprefix $(ABS_DIR), $(ABS_SRC))
-SRCS	+= $(addprefix $(INT_DIR), $(INT_SRC))
 SRCS	+= $(addprefix $(CHR_DIR), $(CHR_SRC))
 SRCS	+= $(addprefix $(MTS_DIR), $(MTS_SRC))
 SRCS	+= $(addprefix $(ICE_DIR), $(ICE_SRC))

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   CharacterGS.cpp                                    :+:      :+:    :+:   */
+/*   CureMF.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 12:36:42 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/28 16:11:00 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/02/28 13:44:16 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/02/28 13:52:31 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Character.hpp"
+#include "Cure.hpp"
 
-// GETTERS AND SETTERS
-// ===================
+// MEMBER FUNCTIONS
+// ================
 
-const std::string &Character::getName() const
+AMateria*	Cure::clone() const
 {
-	return ( this->name );
+	std::cout << "Cure clone called" << std::endl;
+	Cure *clone = new Cure(*this);
+	return ( clone );
 }
 
-AMateria *Character::getInventory(int idx) const
+void		Cure::use( ICharacter & target )
 {
-	return ( this->inventory[idx] );
-}
-
-int Character::getCurrentSlot() const
-{
-	return ( this->currentSlot );
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 12:36:42 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/28 12:35:23 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:31:29 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 // CONSTRUCTORS AND DESTRUCTORS
 // ============================
 
-Character::Character( void ) : this->name("Default"), this->currentSlot(0)
+Character::Character( void ) : name("Default"), currentSlot(0)
 {
 	std::cout << "Character " << this->name << " created." << std::endl;
+	for ( int i = 0; i < 4; i++ )
+		this->inventory[i] = NULL;
 	return ;
 }
 
@@ -31,6 +33,11 @@ Character::Character( Character const & src )
 Character::~Character( void )
 {
 	std::cout << "Character " << this->name << " destroyed." << std::endl;
+	for ( int i = 0; i < 4; i++ )
+	{
+		if ( this->inventory[i] != NULL )
+			delete this->inventory[i];
+	}
 	return ;
 }
 
@@ -56,10 +63,12 @@ Character &	Character::operator=( Character const & rhs )
 // CONSTRUCTORS WITH PARAMETERS
 // ============================
 
-Character::Character( std::string name ) : this->name(name), this->currentSlot(0)
+Character::Character( std::string const & name ) : name(name), currentSlot(0)
 {
-	if ( name == NULL )
+	if ( name.empty() )
 		this->name = "NoName";
+	for ( int i = 0; i < 4; i++ )
+		this->inventory[i] = NULL;
 	std::cout << "Character " << this->name << " created." << std::endl;
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 17:23:26 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/28 12:32:46 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/02/28 15:39:57 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ AMateria::~AMateria( void )
 // CONSTRUCTORS WITH PARAMETERS
 // ============================
 
-AMateria::AMateria( std::string const & type ) : this->type(type)
+AMateria::AMateria( std::string const & type ) : type(type)
 {
-	if ( type == NULL )
+	if ( type.empty() )
 		this->type = "NoType";
 	std::cout << "AMateria Parametric constructor called" << std::endl;
 	return ;
@@ -52,7 +52,7 @@ AMateria & AMateria::operator=( AMateria const & src )
 {
 	std::cout << "AMateria Assignation operator called" << std::endl;
 	if ( this == &src )
-		return *this;
+		return ( *this );
 	this->type = src.getType();
-	return *this;
+	return ( *this );
 }
