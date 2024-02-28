@@ -1,13 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.cpp                                      :+:      :+:    :+:   */
+/*   AMateriaGS.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 12:36:42 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/25 12:36:48 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/02/24 17:20:01 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/02/28 12:27:59 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Character.hpp"
+#include "AMateria.hpp"
+
+// GETTERS AND SETTERS
+// ===================
+
+std::string const &	AMateria::getType() const
+{
+	return this->type;
+}
