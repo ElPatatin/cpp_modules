@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:32:19 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 13:31:01 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:32:48 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class PresidentialPardonForm : public AForm
         // MEMBER FUNCTIONS
         // ================
 
-        void execute( Bureaucrat const & executor );
+        void execute( Bureaucrat const & executor ) const;
 
         // GETTERS AND SETTERS
         // ===================
@@ -48,10 +48,10 @@ class PresidentialPardonForm : public AForm
         // EXCEPTIONS
         // ==========
 
-        class TargetIsEmptyException : public std::exception
+        class TargetIsEmptyException : public std::invalid_argument
         {
             public:
-                TargetIsEmptyException( std::string error );
+                TargetIsEmptyException( std::string const & msg );
         };
 
     private:

@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 12:30:43 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 16:35:36 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/03/01 12:31:35 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/03/01 16:29:03 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
-# include <fstream>
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
     public:
         // CONSTRUCTORS AND DESTRUCTORS
         // ============================
 
-        ShrubberyCreationForm();
-        ShrubberyCreationForm( ShrubberyCreationForm const & src );
-        ~ShrubberyCreationForm();
+        RobotomyRequestForm();
+        RobotomyRequestForm( RobotomyRequestForm const & src );
+        ~RobotomyRequestForm();
 
         // OPERATORS OVERLOAD
         // ==================
 
-        ShrubberyCreationForm & operator=( ShrubberyCreationForm const & rhs );
+        RobotomyRequestForm & operator=( RobotomyRequestForm const & rhs );
 
         // CONSTRUCTORS WITH PARAMETERS
         // ============================
 
-        ShrubberyCreationForm( std::string target );
+        RobotomyRequestForm( std::string target );
 
         // MEMBER FUNCTIONS
         // ================
@@ -52,17 +51,11 @@ class ShrubberyCreationForm : public AForm
         class TargetIsEmptyException : public std::invalid_argument
         {
             public:
-                TargetIsEmptyException( std::string error );
-        };
-
-        class FileNotOpenException : public std::runtime_error
-        {
-            public:
-                FileNotOpenException( std::string error );
+                TargetIsEmptyException( std::string const & msg );
         };
 
     private:
         std::string _target;
 };
 
-#endif /* SHRUBBERYCREATIONFORM_HPP */
+#endif /* ROBOTOMYREQUESTFORM_HPP */

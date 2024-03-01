@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/03/01 12:35:31 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/03/01 16:32:24 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,13 +82,16 @@ BRC_DIR	:= ./BureaucratClass/
 FRM_DIR	:= ./AbstractFormClass/
 
 # PresidentPardonForm Class Folder
-PPF_DIR	:= ./PresidentPardonFormClass/
+PPF_DIR	:= ./PresidentialPardonFormClass/
 
 # RobotomyRequestForm Class Folder
 RRF_DIR	:= ./RobotomyRequestFormClass/
 
 # ShrubberyCreationForm Class Folder
 SCF_DIR	:= ./ShrubberyCreationFormClass/
+
+# Intern Class Folder
+INT_DIR	:= ./InternClass/
 
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
@@ -99,7 +102,7 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(BRC_DIR) -I./$(FRM_DIR)
+INCLUDE	:= -I./$(BRC_DIR) -I./$(FRM_DIR) -I./$(PPF_DIR) -I./$(RRF_DIR) -I./$(SCF_DIR) -I./$(INT_DIR)
 
 # -----------------------------  SOURCE FILES  -------------------------------- #
 
@@ -110,13 +113,16 @@ BRC_SRC	:= Bureaucrat.cpp
 FRM_SRC	:= AForm.cpp
 
 # PresidentPardonForm Class Files
-PPF_SRC	:= PresidentPardonForm.cpp
+PPF_SRC	:= PresidentialPardonForm.cpp
 
 # RobotomyRequestForm Class Files
 RRF_SRC	:= RobotomyRequestForm.cpp
 
 # ShrubberyCreationForm Class Files
 SCF_SRC	:= ShrubberyCreationForm.cpp
+
+# Intern Class Files
+INT_SRC	:= Intern.cpp
 
 # -----------------------------  MAIN FILES  ---------------------------------- #
 SRCS	+= ./main.cpp
@@ -125,6 +131,7 @@ SRCS	+= $(addprefix $(FRM_DIR), $(FRM_SRC))
 SRCS	+= $(addprefix $(PPF_DIR), $(PPF_SRC))
 SRCS	+= $(addprefix $(RRF_DIR), $(RRF_SRC))
 SRCS	+= $(addprefix $(SCF_DIR), $(SCF_SRC))
+SRCS	+= $(addprefix $(INT_DIR), $(INT_SRC))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))
@@ -144,11 +151,11 @@ $(NAME)::
 -include $(DEPS)
 
 clean:
-	@$(RM) -r $(OBJ_DIR) $(DEP_DIR)
+	@$(RM) -r $(OBJ_DIR) $(DEP_DIR) *_shrubbery
 	@echo "$(BLUE)	Cub3D object and dependencies files cleaned.$(DEF_COLOR)"
 
 fclean: 
-	@$(RM) -r $(OBJ_DIR) $(DEP_DIR) $(NAME)
+	@$(RM) -r $(OBJ_DIR) $(DEP_DIR) $(NAME) *_shrubbery
 	@echo "$(WHITE)	All objects, dependencies and executables removed.$(DEF_COLOR)"
 
 re:

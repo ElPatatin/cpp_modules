@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/03/01 12:34:22 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/03/01 15:29:31 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,8 +81,8 @@ BRC_DIR	:= ./BureaucratClass/
 # Abstract Form Class Folder
 FRM_DIR	:= ./AbstractFormClass/
 
-# PresidentPardonForm Class Folder
-PPF_DIR	:= ./PresidentPardonFormClass/
+# PresidentialPardonForm Class Folder
+PPF_DIR	:= ./PresidentialPardonFormClass/
 
 # RobotomyRequestForm Class Folder
 RRF_DIR	:= ./RobotomyRequestFormClass/
@@ -99,7 +99,7 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(BRC_DIR) -I./$(FRM_DIR)
+INCLUDE	:= -I./$(BRC_DIR) -I./$(FRM_DIR) -I./$(PPF_DIR) -I./$(RRF_DIR) -I./$(SCF_DIR)
 
 # -----------------------------  SOURCE FILES  -------------------------------- #
 
@@ -110,7 +110,7 @@ BRC_SRC	:= Bureaucrat.cpp
 FRM_SRC	:= AForm.cpp
 
 # PresidentPardonForm Class Files
-PPF_SRC	:= PresidentPardonForm.cpp
+PPF_SRC	:= PresidentialPardonForm.cpp
 
 # RobotomyRequestForm Class Files
 RRF_SRC	:= RobotomyRequestForm.cpp
@@ -144,11 +144,11 @@ $(NAME)::
 -include $(DEPS)
 
 clean:
-	@$(RM) -r $(OBJ_DIR) $(DEP_DIR)
+	@$(RM) -r $(OBJ_DIR) $(DEP_DIR) *_shrubbery
 	@echo "$(BLUE)	Cub3D object and dependencies files cleaned.$(DEF_COLOR)"
 
 fclean: 
-	@$(RM) -r $(OBJ_DIR) $(DEP_DIR) $(NAME)
+	@$(RM) -r $(OBJ_DIR) $(DEP_DIR) $(NAME) *_shrubbery
 	@echo "$(WHITE)	All objects, dependencies and executables removed.$(DEF_COLOR)"
 
 re:

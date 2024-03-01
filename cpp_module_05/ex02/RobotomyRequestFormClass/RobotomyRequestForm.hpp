@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:31:35 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 13:30:55 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:33:06 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class RobotomyRequestForm : public AForm
         // MEMBER FUNCTIONS
         // ================
 
-        void execute( Bureaucrat const & executor );
+        void execute( Bureaucrat const & executor ) const;
 
         // GETTERS AND SETTERS
         // ===================
@@ -48,10 +48,10 @@ class RobotomyRequestForm : public AForm
         // EXCEPTIONS
         // ==========
 
-        class TargetIsEmptyException : public std::exception
+        class TargetIsEmptyException : public std::invalid_argument
         {
             public:
-                TargetIsEmptyException( std::string error );
+                TargetIsEmptyException( std::string const & msg );
         };
 
     private:
