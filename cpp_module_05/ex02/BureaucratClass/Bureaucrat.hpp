@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:14:04 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 12:29:26 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:24:42 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ class Bureaucrat
         void incrementGrade();
         void decrementGrade();
         void signForm( AForm &form );
+        void executeForm( AForm const & form );
 
         // GETTERS AND SETTERS
         // ===================
@@ -58,34 +59,12 @@ class Bureaucrat
 
         // EXCEPTIONS
         // ==========
-        /**
-         * A exception is a problem that arises during the execution of a program.
-         * When an Error occurs within a method, the method creates an object and
-         * hands it off to the runtime system. This object is called an exception
-         * object. If the exception object is not caught, the runtime system will
-         * catch it and generate an error message.
-         * 
-         * A generic exception:
-         *  class GradeTooHighException : public std::exception
-         *  {
-         *     public:
-         *          virtual const char *what() const throw();
-         *  };
-        */
-
-        /**
-         * This exception is thrown when the grade is too high.
-        */
-
+        
         class GradeTooHighException : public std::out_of_range
         {
             public:
                 GradeTooHighException( std::string const &msg );
         };
-
-        /**
-         * This exception is thrown when the grade is too low.
-        */
 
         class GradeTooLowException : public std::out_of_range
         {
@@ -93,9 +72,6 @@ class Bureaucrat
                 GradeTooLowException( std::string const &msg );
         };
 
-        /**
-         * This exception is thrown when the name is empty.
-        */
        class NameIsEmptyException : public std::invalid_argument
        {
            public:

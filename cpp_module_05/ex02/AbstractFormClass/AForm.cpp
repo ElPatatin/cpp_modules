@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:02:32 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 12:28:02 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:22:44 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,23 @@ AForm::AForm( std::string name, int gradeToSign, int gradeToExecute, bool isSign
 
 void AForm::beSigned( Bureaucrat &bureaucrat )
 {
-    if  (this->_signed)
+    if ( this->_signed )
         throw ( AForm::GradeTooLowException( "the form " + this->_name + " is already signed!" ) );
-    if (bureaucrat.getGrade() > this->_gradeToSign)
+    if ( bureaucrat.getGrade() > this->_gradeToSign )
         throw ( AForm::GradeTooLowException( "the grade for " + bureaucrat.getName() + " is too low to sign " + this->_name + "!" ) );
-    if (bureaucrat.getGrade() > this->_gradeToExecute)
+    if ( bureaucrat.getGrade() > this->_gradeToExecute )
         throw ( AForm::GradeTooLowException( "the grade for " + bureaucrat.getName() + " is too low to execute " + this->_name + "!" ) );
     this->_signed = true;
+    return ;
+}
+
+void AForm::execute( Bureaucrat const & executor )
+{
+    if ( !this->_signed )
+        throw ( AForm::GradeTooLowException( "the form " + this->_name + " is not signed!" ) );
+    if ( executor.getGrade() > this->_gradeToExecute )
+        throw ( AForm::GradeTooLowException( "the grade for " + executor.getName() + " is too low to execute " + this->_name + "!" ) );
+    this->_execute( executor );
     return ;
 }
 

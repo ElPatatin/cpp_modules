@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:56:24 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 12:22:52 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:24:35 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void Bureaucrat::decrementGrade()
         this->_grade++;
 }
 
-void Bureaucrat::signForm( Form &form )
+void Bureaucrat::signForm( AForm &form )
 {
     try
     {
@@ -94,6 +94,20 @@ void Bureaucrat::signForm( Form &form )
     catch (std::exception & e)
     {
         std::cout << this->_name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
+    return ;
+}
+
+void Bureaucrat::executeForm( AForm const & form )
+{
+    try
+    {
+        form.execute( *this );
+        std::cout << this->_name << " executed" << form.getName() << "." << std::endl;
+    }
+    catch (std::exception & e)
+    {
+        std::cout << this->_name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
     }
     return ;
 }

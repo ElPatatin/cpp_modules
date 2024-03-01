@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:01:40 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 12:28:05 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:19:39 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class AForm
 
         AForm();
         AForm( AForm const & src );
-        ~AForm();
+        virtual ~AForm();
 
         // OPERATOR OVERLOAD
         // =================
@@ -42,6 +42,7 @@ class AForm
         // ================
 
         void beSigned( Bureaucrat &bureaucrat );
+        void execute( Bureaucrat const & executor );
     
         // GETTERS AND SETTERS
         // ===================
@@ -71,6 +72,12 @@ class AForm
             public:
                 NameIsEmptyException( std::string const &msg );
         };
+
+    protected:
+        // MEMBER FUNCTIONS
+        // ================
+
+        virtual void _execute( Bureaucrat const & executor ) const = 0;
 
     private:
         const std::string   _name;              // Name of the AForm

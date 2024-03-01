@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:02:32 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 12:24:00 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:17:09 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,10 @@ Form::Form( std::string name, int gradeToSign, int gradeToExecute, bool isSigned
 
 void Form::beSigned( Bureaucrat &bureaucrat )
 {
-    if  (this->_signed)
+    if ( this->_signed )
         throw ( Form::GradeTooLowException( "the form " + this->_name + " is already signed!" ) );
-    if (bureaucrat.getGrade() > this->_gradeToSign)
+    if ( bureaucrat.getGrade() > this->_gradeToSign )
         throw ( Form::GradeTooLowException( "the grade for " + bureaucrat.getName() + " is too low to sign " + this->_name + "!" ) );
-    if (bureaucrat.getGrade() > this->_gradeToExecute)
-        throw ( Form::GradeTooLowException( "the grade for " + bureaucrat.getName() + " is too low to execute " + this->_name + "!" ) );
     this->_signed = true;
     return ;
 }
