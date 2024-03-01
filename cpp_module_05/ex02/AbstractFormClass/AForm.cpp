@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:02:32 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 12:24:00 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 12:28:02 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 // CONSTRUCTOR AND DESTRUCTOR
 // ==========================
 
-Form::Form() \
-    : _name( "defaultForm" ), _gradeToSign( 1 ), _gradeToExecute( 1 ), _signed( false )
+AForm::AForm() \
+    : _name( "defaultAForm" ), _gradeToSign( 1 ), _gradeToExecute( 1 ), _signed( false )
 {
     return ;
 }
 
-Form::Form( Form const & src ) \
+AForm::AForm( AForm const & src ) \
     : _name( src.getName() ), _gradeToSign( src.getGradeToSign() ), _gradeToExecute( src.getGradeToExecute() )
 {
     *this = src;
     return ;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
     return ;
 }
@@ -36,7 +36,7 @@ Form::~Form()
 // OPERATOR OVERLOAD
 // =================
 
-Form & Form::operator=( Form const & rhs )
+AForm & AForm::operator=( AForm const & rhs )
 {
     if (this != &rhs)
     {
@@ -48,41 +48,41 @@ Form & Form::operator=( Form const & rhs )
 // CONSTRUCTOR WITH PARAMETERS
 // ===========================
 
-Form::Form( std::string name, int gradeToSign, int gradeToExecute ) \
+AForm::AForm( std::string name, int gradeToSign, int gradeToExecute ) \
     : _name( name ), _gradeToSign( gradeToSign ), _gradeToExecute( gradeToExecute ), _signed( false )
 {
     if ( name.empty() )
-        throw ( Form::NameIsEmptyException( "Name is empty" ) );
+        throw ( AForm::NameIsEmptyException( "Name is empty" ) );
     if (gradeToSign < MAX_GRADE || gradeToExecute < MAX_GRADE)
-        throw ( Form::GradeTooHighException( "Grade for " + this->_name + " is too high!" ) );
+        throw ( AForm::GradeTooHighException( "Grade for " + this->_name + " is too high!" ) );
     else if (gradeToSign > MIN_GRADE || gradeToExecute > MIN_GRADE)
-        throw ( Form::GradeTooLowException( "Grade for " + this->_name + " is too low!" ) );
+        throw ( AForm::GradeTooLowException( "Grade for " + this->_name + " is too low!" ) );
     return ;
 }
 
-Form::Form( std::string name, int gradeToSign, int gradeToExecute, bool isSigned ) \
+AForm::AForm( std::string name, int gradeToSign, int gradeToExecute, bool isSigned ) \
     : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _signed(isSigned)
 {
     if ( name.empty() )
-        throw ( Form::NameIsEmptyException( "Name is empty!" ) );
+        throw ( AForm::NameIsEmptyException( "Name is empty!" ) );
     if ( gradeToSign < MAX_GRADE || gradeToExecute < MAX_GRADE )
-        throw ( Form::GradeTooHighException( "Grade for " + this->_name + " is too high!" ) );
+        throw ( AForm::GradeTooHighException( "Grade for " + this->_name + " is too high!" ) );
     else if ( gradeToSign > MIN_GRADE || gradeToExecute > MIN_GRADE )
-        throw ( Form::GradeTooLowException( "Grade for " + this->_name + " is too low!" ) );
+        throw ( AForm::GradeTooLowException( "Grade for " + this->_name + " is too low!" ) );
     return ;
 }
 
 // MEMBER FUNCTIONS
 // ================
 
-void Form::beSigned( Bureaucrat &bureaucrat )
+void AForm::beSigned( Bureaucrat &bureaucrat )
 {
     if  (this->_signed)
-        throw ( Form::GradeTooLowException( "the form " + this->_name + " is already signed!" ) );
+        throw ( AForm::GradeTooLowException( "the form " + this->_name + " is already signed!" ) );
     if (bureaucrat.getGrade() > this->_gradeToSign)
-        throw ( Form::GradeTooLowException( "the grade for " + bureaucrat.getName() + " is too low to sign " + this->_name + "!" ) );
+        throw ( AForm::GradeTooLowException( "the grade for " + bureaucrat.getName() + " is too low to sign " + this->_name + "!" ) );
     if (bureaucrat.getGrade() > this->_gradeToExecute)
-        throw ( Form::GradeTooLowException( "the grade for " + bureaucrat.getName() + " is too low to execute " + this->_name + "!" ) );
+        throw ( AForm::GradeTooLowException( "the grade for " + bureaucrat.getName() + " is too low to execute " + this->_name + "!" ) );
     this->_signed = true;
     return ;
 }
@@ -90,22 +90,22 @@ void Form::beSigned( Bureaucrat &bureaucrat )
 // GETTERS AND SETTERS
 // ===================
 
-std::string Form::getName() const
+std::string AForm::getName() const
 {
     return ( this->_name );
 }
 
-bool Form::getSigned() const
+bool AForm::getSigned() const
 {
     return ( this->_signed );
 }
 
-int Form::getGradeToSign() const
+int AForm::getGradeToSign() const
 {
     return ( this->_gradeToSign );
 }
 
-int Form::getGradeToExecute() const
+int AForm::getGradeToExecute() const
 {
     return ( this->_gradeToExecute );
 }
@@ -113,19 +113,19 @@ int Form::getGradeToExecute() const
 // EXCEPTIONS
 // ==========
 
-Form::GradeTooHighException::GradeTooHighException( std::string const &msg ) \
+AForm::GradeTooHighException::GradeTooHighException( std::string const &msg ) \
     : std::out_of_range( msg )
 {
     return ;
 }
 
-Form::GradeTooLowException::GradeTooLowException( std::string const &msg ) \
+AForm::GradeTooLowException::GradeTooLowException( std::string const &msg ) \
     : std::out_of_range( msg )
 {
     return ;
 }
 
-Form::NameIsEmptyException::NameIsEmptyException( std::string const &msg ) \
+AForm::NameIsEmptyException::NameIsEmptyException( std::string const &msg ) \
     : std::invalid_argument( msg )
 {
     return ;
@@ -134,7 +134,7 @@ Form::NameIsEmptyException::NameIsEmptyException( std::string const &msg ) \
 // OPERATOR OVERLOAD
 // =================
 
-std::ostream & operator<<( std::ostream & o, Form const & rhs )
+std::ostream & operator<<( std::ostream & o, AForm const & rhs )
 {
     o << "Form " << rhs.getName() << " is " << ( rhs.getSigned() ? "signed" : "not signed" ) << std::endl;
     return ( o );

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 19:56:24 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/29 19:59:43 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:36:09 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,15 @@ Bureaucrat::~Bureaucrat()
 // CONSTRUCTORS WITH PARAMETERS
 // ============================
 
-Bureaucrat::Bureaucrat( std::string name, int grade )
+Bureaucrat::Bureaucrat( std::string name, int grade ) \
+    : _name( name ), _grade( grade )
 {
-    if ( name.empty() )     // if (name == "" || name == NULL) 
+    if ( name.empty() )
         throw Bureaucrat::NameIsEmptyException( "Name is empty" );
-    this->_name = name;
-
     if (grade < MAX_GRADE) 
         throw Bureaucrat::GradeTooHighException( "Grade for " + this->_name + " is too high" );
     else if (grade > MIN_GRADE)
         throw Bureaucrat::GradeTooLowException( "Grade for " + this->_name + " is too low" );
-    this->_grade = grade;
 }
 
 // OPERATORS OVERLOAD
@@ -55,7 +53,6 @@ Bureaucrat & Bureaucrat::operator=( Bureaucrat const & rhs )
 {
     if (this != &rhs)
     {
-        this->_name = rhs.getName();
         this->_grade = rhs.getGrade();
     }
     return ( *this );

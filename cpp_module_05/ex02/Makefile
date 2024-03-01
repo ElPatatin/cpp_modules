@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/03/01 12:24:34 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/03/01 12:34:22 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SYSTEM	:= $(shell uname -s)
 
 # -=-=-=-=-	NAME -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-NAME    	:= formUpMaggots
+NAME    	:= noYouNeedForm28Bnot28C
 
 MKFL		:= Makefile
 
@@ -78,8 +78,17 @@ DEP_DIR	:= .deps/
 # Bureaucrat Class Folder
 BRC_DIR	:= ./BureaucratClass/
 
-# Form Class Folder
-FRM_DIR	:= ./FormClass/
+# Abstract Form Class Folder
+FRM_DIR	:= ./AbstractFormClass/
+
+# PresidentPardonForm Class Folder
+PPF_DIR	:= ./PresidentPardonFormClass/
+
+# RobotomyRequestForm Class Folder
+RRF_DIR	:= ./RobotomyRequestFormClass/
+
+# ShrubberyCreationForm Class Folder
+SCF_DIR	:= ./ShrubberyCreationFormClass/
 
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
@@ -97,13 +106,25 @@ INCLUDE	:= -I./$(BRC_DIR) -I./$(FRM_DIR)
 # Bureaucrat Class Files
 BRC_SRC	:= Bureaucrat.cpp
 
-# Form Class Files
-FRM_SRC	:= Form.cpp
+# AbstractForm Class Files
+FRM_SRC	:= AForm.cpp
+
+# PresidentPardonForm Class Files
+PPF_SRC	:= PresidentPardonForm.cpp
+
+# RobotomyRequestForm Class Files
+RRF_SRC	:= RobotomyRequestForm.cpp
+
+# ShrubberyCreationForm Class Files
+SCF_SRC	:= ShrubberyCreationForm.cpp
 
 # -----------------------------  MAIN FILES  ---------------------------------- #
 SRCS	+= ./main.cpp
 SRCS	+= $(addprefix $(BRC_DIR), $(BRC_SRC))
 SRCS	+= $(addprefix $(FRM_DIR), $(FRM_SRC))
+SRCS	+= $(addprefix $(PPF_DIR), $(PPF_SRC))
+SRCS	+= $(addprefix $(RRF_DIR), $(RRF_SRC))
+SRCS	+= $(addprefix $(SCF_DIR), $(SCF_SRC))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))

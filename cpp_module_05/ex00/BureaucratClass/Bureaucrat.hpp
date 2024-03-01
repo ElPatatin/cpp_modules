@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:14:04 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/02/29 20:09:54 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 10:36:12 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ class Bureaucrat
        };
 
     private:
-        std::string _name;      // The name of the bureaucrat
-        int         _grade;     // The grade of the bureaucrat
+        const std::string   _name;      // The name of the bureaucrat
+        int                 _grade;     // The grade of the bureaucrat
 };
 
 // OSTREAN OVERLOAD

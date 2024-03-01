@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:14:04 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 12:20:05 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 12:29:26 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include <iostream>
 # include <string>
 # include <exception>
-# include "Form.hpp"
+# include "AForm.hpp"
 
 # define MAX_GRADE 1
 # define MIN_GRADE 150
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -48,7 +48,7 @@ class Bureaucrat
 
         void incrementGrade();
         void decrementGrade();
-        void signForm( Form &form );
+        void signForm( AForm &form );
 
         // GETTERS AND SETTERS
         // ===================

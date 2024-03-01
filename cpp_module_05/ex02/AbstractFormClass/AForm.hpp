@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 20:01:40 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 12:19:36 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/01 12:28:05 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
     public:
         // CONSTRUCTOR AND DESTRUCTOR
         // ==========================
 
-        Form();
-        Form( Form const & src );
-        ~Form();
+        AForm();
+        AForm( AForm const & src );
+        ~AForm();
 
         // OPERATOR OVERLOAD
         // =================
 
-        Form & operator=( Form const & rhs );
+        AForm & operator=( AForm const & rhs );
 
         // CONSTRUCTOR WITH PARAMETERS
         // ===========================
 
-        Form( std::string name, int gradeToSign, int gradeToExecute );
-        Form( std::string name, int gradeToSign, int gradeToExecute, bool isSigned );
+        AForm( std::string name, int gradeToSign, int gradeToExecute );
+        AForm( std::string name, int gradeToSign, int gradeToExecute, bool isSigned );
 
         // MEMBER FUNCTIONS
         // ================
@@ -73,12 +73,12 @@ class Form
         };
 
     private:
-        const std::string   _name;              // Name of the form
-        const int           _gradeToSign;       // Grade required to sign the form
-        const int           _gradeToExecute;    // Grade required to execute the form
-        bool                _signed;            // Status of the form
+        const std::string   _name;              // Name of the AForm
+        const int           _gradeToSign;       // Grade required to sign the AForm
+        const int           _gradeToExecute;    // Grade required to execute the AForm
+        bool                _signed;            // Status of the AForm
 };
 
-std::ostream & operator<<( std::ostream & o, Form const & rhs );
+std::ostream & operator<<( std::ostream & o, AForm const & rhs );
 
 #endif
