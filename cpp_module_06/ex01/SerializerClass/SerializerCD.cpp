@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   SerializerCD.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 17:50:49 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/02 11:12:48 by cpeset-c         ###   ########.fr       */
+/*   Created: 2024/03/02 16:26:04 by cpeset-c          #+#    #+#             */
+/*   Updated: 2024/03/02 16:26:49 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-int main( int ac, char **av )
+// CONSTURCTORS AND DESTRUCTORS
+// ============================
+
+Serializer::Serializer()
 {
-	if ( ac != 2 )
-	{
-		std::cerr << "Usage: ./convert [value]" << std::endl;
-		return ( 1 );
-	}
-	ScalarConverter::convert(av[1]);
-	return ( 0 );
+    return ;
+}
+
+Serializer::Serializer(Serializer const & src)
+{
+    UNUSED(src);
+    return ;
+}
+
+Serializer::~Serializer()
+{
+    return ;
+}
+
+// OPERATORS OVERLOAD
+// ===================
+
+Serializer & Serializer::operator=(Serializer const & rhs)
+{
+    UNUSED(rhs);
+    return (*this);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverterCD.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:07:41 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/01 18:13:06 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/02 11:07:42 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ ScalarConverter::ScalarConverter()
     return ; 
 }
 
-ScalarConverter::ScalarConverter( ScalarConverter const & src )
+ScalarConverter::ScalarConverter( const ScalarConverter & src )
 {
     UNUSED(src);
     return ; 
@@ -34,7 +34,7 @@ ScalarConverter::~ScalarConverter()
 // OPERATORS OVERLOAD
 // ==================
 
-ScalarConverter & ScalarConverter::operator=( ScalarConverter const & rhs )
+ScalarConverter & ScalarConverter::operator=( const ScalarConverter & rhs )
 {
     UNUSED(rhs);
     return *this;
