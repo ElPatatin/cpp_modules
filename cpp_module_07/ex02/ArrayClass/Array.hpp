@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 17:35:49 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/02 21:39:42 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/03 10:52:32 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ class Array
                 OutOfLimits( std::string const &msg );
         };
 
-        class EmptyArray : public std::exception
+        class EmptyArray : public std::invalid_argument
         {
             public:
                 EmptyArray( std::string const &msg );

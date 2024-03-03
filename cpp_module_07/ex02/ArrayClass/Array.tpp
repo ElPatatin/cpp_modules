@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 17:35:47 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/02 21:39:51 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/03 10:52:35 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ Array< T >::OutOfLimits::OutOfLimits( std::string const &msg ) \
 
 template < typename T >
 Array< T >::EmptyArray::EmptyArray( std::string const &msg ) \
-    : std::exception( msg )
+    : std::invalid_argument( msg )
 {
     return ;
 }
