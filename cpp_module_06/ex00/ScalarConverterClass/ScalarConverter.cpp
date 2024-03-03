@@ -93,58 +93,126 @@ int     ScalarConverter::getType( std::string const & value )
     }
     if ( isInfOrNan(value) )
         return ( TSPECIAL );
+    if ( isInffOrNanf(value) )
+        return ( TSPECIALF );
     return ( TINVALID );
 }
 
 void    ScalarConverter::convertCharType( std::string const & value )
 {
-    char    c;
-
-    if ( checkValidChar(value) )
+    try
     {
-        c = static_cast<char>(value[1]);
-        std::cout << CHAR << "\'" << c << "\'" << std::endl;
-    }
-    else
-    {
-        if ( !isValidNumber(value) )
-        {
-            std::cerr << CHAR << IMPOSSIBLE << std::endl;
-            return ;
-        }
+        char c = static_cast<char>( value[1] );
 
-        unsigned char uc = static_cast<unsigned char>(atoi(value.c_str()));
-        if ( uc <= 31u || uc >= 127u )
-        {
-            std::cerr << CHAR << NON_DISPLAYABLE << std::endl;
-            return ;
-        }
-        c = static_cast<char>(uc);
-        std::cout << CHAR << "\'" << c << "\'" << std::endl;
+        // Char conversion
+        if ( c < 32 || c > 126 )
+            std::cout << CHAR << "Non displayable" << std::endl;
+        else
+            std::cout << CHAR << "\'" << c << "\'" << std::endl;
+
+        // Int conversion
+        std::cout << INT << static_cast<int>( c ) << std::endl;
+
+        // Float conversion
+        float f = static_cast<float>( c );
+        std::cout << FLOAT << std::fixed << std::setprecision( getPrecision( value, true ) ) << f << "f" << std::endl;
+
+        // Double conversion
+        std::cout << DOUBLE << std::fixed << std::setprecision( getPrecision( value, false ) ) << static_cast<double>( c ) << std::endl;
+        
+        return ;
     }
-    return ;
+    catch(const std::exception& e)
+    {
+        std::cerr << "Overflow or underflow in char conversion" << std::endl;
+        return ;
+    }
 }
 
 void    ScalarConverter::convertIntType( std::string const & value )
 {
-    int i = static_cast<int>(atoi(value.c_str()));
-    std::cout << INT << i << std::endl;
-    return ;
+    try
+    {
+        int i = static_cast<int>(atoi(value.c_str()));
+
+        // Char conversion
+        char c = static_cast<char>( i );
+        if ( c < 32 || c > 126 )
+            std::cout << CHAR << "Non displayable" << std::endl;
+        else
+            std::cout << CHAR << "\'" << c << "\'" << std::endl;
+
+        // Int conversion
+        std::cout << INT << i << std::endl;
+
+        // Float conversion
+        float f = static_cast<float>( i );
+        std::cout << FLOAT << std::fixed << std::setprecision(getPrecision( value, true ) ) << f << "f" << std::endl;
+
+        // Double conversion
+        std::cout << DOUBLE << std::fixed << std::setprecision( getPrecision( value, false ) ) << static_cast<double>( i ) << std::endl;
+
+        return ;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Overflow or underflow in int conversion" << std::endl;
+        return ;
+    }
 }
 
 void    ScalarConverter::convertFloatType( std::string const & value )
 {
-    float f = static_cast<float>(atof(value.c_str()));
-    std::cout << FLOAT << std::fixed << std::setprecision(getPrecision( value, true )) << f<< "f" << std::endl;
-    return ;
+    try
+    {
+        float f = static_cast<float>( atof(value.c_str()) );
+
+        // Check for overflow and underflow
+        char c = static_cast<char>( f );
+        if ( c < 32 || c > 126 )
+            std::cout << CHAR << "Non displayable" << std::endl;
+        else
+            std::cout << CHAR << "\'" << c << "\'" << std::endl;
+        std::cout << INT << static_cast<int>(f) << std::endl;
+        std::cout << FLOAT << std::fixed << std::setprecision(getPrecision( value, true ) ) << f << "f" << std::endl;
+        std::cout << DOUBLE << std::fixed << std::setprecision(getPrecision( value, false ) ) << static_cast<double>( f ) << std::endl;
+        return ;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Overflow or underflow in float conversion" << std::endl;
+        return ;
+    }
 }
 
 void    ScalarConverter::convertDoubleType( std::string const & value )
 {
-    
-    double d = static_cast<double>(atof(value.c_str()));
-    std::cout << DOUBLE << std::fixed << std::setprecision(getPrecision( value, false )) << d << std::endl;
-    return ;
+    try
+    {
+        double d = static_cast<double>( atof(value.c_str()) );
+
+        // Char conversion
+        char c = static_cast<char>( d );
+        if ( c < 32 || c > 126)
+            std::cout << CHAR << "Non displayable" << std::endl;
+        else
+            std::cout << CHAR << "\'" << c << "\'" << std::endl;
+
+        // Int conversion
+        std::cout << INT << static_cast<int>( d ) << std::endl;
+
+        // Float conversion
+        std::cout << FLOAT << std::fixed << std::setprecision(getPrecision( value, true )) << static_cast<float>( d ) << "f" << std::endl;
+
+        // Double conversion
+        std::cout << DOUBLE << std::fixed << std::setprecision(getPrecision( value, false )) << d << std::endl;
+        return ;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Overflow or underflow in double conversion" << std::endl;
+        return ;
+    }
 }
 
 void    ScalarConverter::printSpecial( std::string const & value )

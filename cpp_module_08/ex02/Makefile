@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+         #
+#    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/03/03 12:11:15 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/03/03 19:58:40 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,8 @@ CP		= cp -f
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
 
-# Span Class Folder
-SPN_DIR	:= ./SpanClass/
+# Mutant Stack Class Directory
+MUT_DIR	:= ./MutantStackClass/
 
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
@@ -87,16 +87,12 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(SPN_DIR)
+INCLUDE	:= -I./$(MUT_DIR)
 
 # -----------------------------  SOURCE FILES  -------------------------------- #
 
-# Span Class Files
-SPN_FLS	:= Span.cpp
-
 # -----------------------------  MAIN FILES  ---------------------------------- #
 SRCS	+= ./main.cpp
-SRCS	+= $(addprefix $(SPN_DIR), $(SPN_FLS))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))

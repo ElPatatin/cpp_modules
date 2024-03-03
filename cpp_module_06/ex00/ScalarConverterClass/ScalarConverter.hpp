@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:40:36 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/03 16:11:48 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/03 19:44:42 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <limits>
 # include <cmath>
 # include <iomanip>
+# include <sstream>
 
 # define UNUSED (void)
 
