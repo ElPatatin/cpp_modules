@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:40:36 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/02 15:49:00 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/03 16:11:48 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@
 # define FLOAT (char *)"float: "
 # define DOUBLE (char *)"double: "
 
+typedef enum e_type
+{
+    TCHAR,
+    TINT,
+    TFLOAT,
+    TDOUBLE,
+    TSPECIAL,
+    TSPECIALF,
+    TINVALID = -1
+}   t_type;
+
 class ScalarConverter
 {
     public:
@@ -56,11 +67,15 @@ class ScalarConverter
         // MEMBER FUNCTIONS
         // ================
 
-        static void         convertToChar( std::string const & value );
+        static int          getType( std::string const & value );
+        static void         convertCharType( std::string const & value );
         static bool         checkValidChar( std::string const & c );
-        static void         convertToInt( std::string const & value );
-        static void         convertToFloat( std::string const & value );
-        static void         convertToDouble( std::string const & value );
+        static void         convertIntType( std::string const & value );
+        static void         convertFloatType( std::string const & value );
+        static void         convertDoubleType( std::string const & value );
+        static void         printSpecial( std::string const & value );
+        static void         printSpecialf( std::string const & value );
+        static void         printInvalid();
         static bool         isValidNumber( std::string const & str );
         static bool         isInfOrNan( std::string const & value );
         static bool         isInffOrNanf( std::string const & value );

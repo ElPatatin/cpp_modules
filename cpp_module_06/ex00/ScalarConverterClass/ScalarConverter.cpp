@@ -18,14 +18,85 @@
 
 void    ScalarConverter::convert( std::string const & value )
 {
-    convertToChar(value);
-    convertToInt(value);
-    convertToFloat(value);
-    convertToDouble(value);
+    int type = getType( value );
+
+    switch (type)
+    {
+        case TCHAR:
+            convertCharType( value );
+            break;
+        case TINT:
+            convertIntType( value );
+            break;
+        case TFLOAT:
+            convertFloatType( value );
+            break;
+        case TDOUBLE:
+            convertDoubleType( value );
+            break;
+        case TSPECIAL:
+            printSpecial( value );
+            break;
+        case TSPECIALF:
+            printSpecialf( value );
+            break;
+        case TINVALID:
+            printInvalid();
+            break;
+    }
+
     return ; 
 }
 
-void    ScalarConverter::convertToChar( std::string const & value )
+int     ScalarConverter::getType( std::string const & value )
+{
+    if ( checkValidChar(value) )
+        return ( TCHAR );
+    if ( isValidNumber(value) )
+    {
+        size_t  i = 0;
+        size_t  j = 0;
+        bool    dot = false;
+        bool    isFloat = false;
+        bool    isDouble = false;
+
+        while (i < value.length() && isspace(value[i]))
+            ++i;
+        if (i < value.length() && (value[i] == '-' || value[i] == '+'))
+            ++i;
+        while (i < value.length() && isdigit(value[i]))
+            ++i;
+        if (i < value.length() && value[i] == '.')
+        {
+            dot = true;
+            ++i;
+            j = i;
+        }
+        else if (i == value.length())
+            return ( TINT );
+        while (i < value.length() && isdigit(value[i]))
+            ++i;
+        if (j == i)
+            return ( false );
+        if (i < value.length() && value[i] == 'f' && dot)
+        {
+            isFloat = true;
+            ++i;
+        }
+        else if (i == value.length() && dot)
+            isDouble = true;
+        
+        if (i == value.length() && isFloat)
+            return ( TFLOAT );
+        else if (i == value.length() && isDouble)
+            return ( TDOUBLE );
+    }
+    if ( isInfOrNan(value) )
+        return ( TSPECIAL );
+    return ( TINVALID );
+}
+
+void    ScalarConverter::convertCharType( std::string const & value )
 {
     char    c;
 
@@ -54,69 +125,60 @@ void    ScalarConverter::convertToChar( std::string const & value )
     return ;
 }
 
-void    ScalarConverter::convertToInt( std::string const & value )
+void    ScalarConverter::convertIntType( std::string const & value )
 {
-    int i;
-
-    if ( !isValidNumber(value) )
-    {
-        std::cerr << INT << IMPOSSIBLE << std::endl;
-        return ;
-    }
-    i = static_cast<int>(atoi(value.c_str()));
+    int i = static_cast<int>(atoi(value.c_str()));
     std::cout << INT << i << std::endl;
     return ;
 }
 
-void    ScalarConverter::convertToFloat( std::string const & value )
+void    ScalarConverter::convertFloatType( std::string const & value )
 {
-    if ( isInfOrNan( value ) )
-    {
-        std::cout << FLOAT << value << "f" << std::endl;
-        return ;
-    }
-    if ( isInffOrNanf( value ) )
-    {
-        std::cout << FLOAT << value << std::endl;
-        return ;
-    }
-    if ( !isValidNumber(value) )
-    {
-        std::cerr << FLOAT << IMPOSSIBLE << std::endl;
-        return ;
-    }
     float f = static_cast<float>(atof(value.c_str()));
     std::cout << FLOAT << std::fixed << std::setprecision(getPrecision( value, true )) << f<< "f" << std::endl;
     return ;
 }
 
-void    ScalarConverter::convertToDouble( std::string const & value )
+void    ScalarConverter::convertDoubleType( std::string const & value )
 {
-    if ( isInfOrNan( value ) )
-    {
-        std::cout << DOUBLE << value << std::endl;
-        return ;
-    }
-    if ( isInffOrNanf( value ) )
-    {
-        std::string str = value;
-        str.erase(str.length() - 1);
-        std::cout << DOUBLE << str << std::endl;
-        return ;
-    }
-    if ( !isValidNumber(value) )
-    {
-        std::cerr << DOUBLE << IMPOSSIBLE << std::endl;
-        return ;
-    }
+    
     double d = static_cast<double>(atof(value.c_str()));
     std::cout << DOUBLE << std::fixed << std::setprecision(getPrecision( value, false )) << d << std::endl;
     return ;
 }
 
+void    ScalarConverter::printSpecial( std::string const & value )
+{
+    std::cout << CHAR << IMPOSSIBLE << std::endl;
+    std::cout << INT << IMPOSSIBLE << std::endl;
+    std::cout << FLOAT << value << "f" << std::endl;
+    std::cout << DOUBLE << value << std::endl;
+    return ;
+}
+
+void    ScalarConverter::printSpecialf( std::string const & value )
+{
+    std::cout << CHAR << IMPOSSIBLE << std::endl;
+    std::cout << INT << IMPOSSIBLE << std::endl;
+    std::cout << FLOAT << value << std::endl;
+    std::string str = value;
+    str.erase(str.length() - 1);
+    std::cout << DOUBLE << str << std::endl;
+    return ;
+}
+
+
+void    ScalarConverter::printInvalid()
+{
+    std::cerr << CHAR << IMPOSSIBLE << std::endl;
+    std::cerr << INT << IMPOSSIBLE << std::endl;
+    std::cerr << FLOAT << IMPOSSIBLE << std::endl;
+    std::cerr << DOUBLE << IMPOSSIBLE << std::endl;
+    return ;
+}
+
 bool    ScalarConverter::isInfOrNan( std::string const & value )
 {
-
     if ( value == "nan" || value == "inf" || value == "+inf" || value == "-inf" )
         return ( true );
     return ( false );
