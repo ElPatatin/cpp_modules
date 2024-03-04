@@ -135,6 +135,13 @@ void    ScalarConverter::convertIntType( std::string const & value )
     {
         int i = static_cast<int>(atoi(value.c_str()));
 
+        std::string str = ::toString(i);
+        if (str != value)
+        {
+            std::cerr << "Overflow or underflow in int conversion" << std::endl;
+            return ;
+        }
+        
         // Char conversion
         char c = static_cast<char>( i );
         if ( c < 32 || c > 126 )
@@ -166,6 +173,8 @@ void    ScalarConverter::convertFloatType( std::string const & value )
     try
     {
         float f = static_cast<float>( atof(value.c_str()) );
+        int i = static_cast<int>( f );
+        double d = static_cast<double>( f );
 
         // Check for overflow and underflow
         char c = static_cast<char>( f );
@@ -173,9 +182,9 @@ void    ScalarConverter::convertFloatType( std::string const & value )
             std::cout << CHAR << "Non displayable" << std::endl;
         else
             std::cout << CHAR << "\'" << c << "\'" << std::endl;
-        std::cout << INT << static_cast<int>(f) << std::endl;
+        std::cout << INT << i << std::endl;
         std::cout << FLOAT << std::fixed << std::setprecision(getPrecision( value, true ) ) << f << "f" << std::endl;
-        std::cout << DOUBLE << std::fixed << std::setprecision(getPrecision( value, false ) ) << static_cast<double>( f ) << std::endl;
+        std::cout << DOUBLE << std::fixed << std::setprecision(getPrecision( value, false ) ) << d << std::endl;
         return ;
     }
     catch(const std::exception& e)
@@ -190,6 +199,8 @@ void    ScalarConverter::convertDoubleType( std::string const & value )
     try
     {
         double d = static_cast<double>( atof(value.c_str()) );
+        int i = static_cast<int>( d );
+        float f = static_cast<float>( d );
 
         // Char conversion
         char c = static_cast<char>( d );
@@ -199,10 +210,11 @@ void    ScalarConverter::convertDoubleType( std::string const & value )
             std::cout << CHAR << "\'" << c << "\'" << std::endl;
 
         // Int conversion
-        std::cout << INT << static_cast<int>( d ) << std::endl;
+        
+        std::cout << INT << i << std::endl;
 
         // Float conversion
-        std::cout << FLOAT << std::fixed << std::setprecision(getPrecision( value, true )) << static_cast<float>( d ) << "f" << std::endl;
+        std::cout << FLOAT << std::fixed << std::setprecision(getPrecision( value, true )) << f << "f" << std::endl;
 
         // Double conversion
         std::cout << DOUBLE << std::fixed << std::setprecision(getPrecision( value, false )) << d << std::endl;

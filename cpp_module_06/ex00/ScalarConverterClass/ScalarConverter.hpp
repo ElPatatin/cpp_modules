@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 17:40:36 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/03 19:44:42 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:44:39 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@
 # define INT (char *)"int: "
 # define FLOAT (char *)"float: "
 # define DOUBLE (char *)"double: "
+
+template <typename T>
+std::string toString(T a_value)
+{
+    std::ostringstream out;
+    out << a_value;
+    return out.str();
+}
 
 typedef enum e_type
 {
