@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 17:35:47 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/03 10:52:35 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:04:13 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ Array< T >::Array( void ) \
 template < typename T >
 Array< T >::Array( Array const &src )
 {
+    this->_array = NULL;
     *this = src;
     return ;
 }
