@@ -6,7 +6,7 @@
 #    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/03/03 20:16:49 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/03/05 22:42:41 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,8 @@ CP		= cp -f
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
 
-# Span Class Folder
-SPN_DIR	:= ./SpanClass/
+# Bitcon Exchange Class Directory
+BTC_DIR	:= ./BitcoinExchangeClass/
 
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
@@ -87,16 +87,16 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(SPN_DIR)
+INCLUDE	:= -I./$(BTC_DIR)
 
 # -----------------------------  SOURCE FILES  -------------------------------- #
 
-# Span Class Files
-SPN_FLS	:= Span.cpp
+# Bitcoin Exchange Class Files
+BTC_FLS	:= BitcoinExchange.cpp
 
 # -----------------------------  MAIN FILES  ---------------------------------- #
 SRCS	+= ./main.cpp
-SRCS	+= $(addprefix $(SPN_DIR), $(SPN_FLS))
+SRCS	+= $(addprefix $(BTC_DIR), $(BTC_FLS))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))
@@ -108,25 +108,25 @@ all: $(NAME)
 
 $(NAME):: $(OBJS)
 	@$(CC) $(CFLAGS) $(XFLAGS) $(OBJS) -o $(NAME)
-	@printf "\n\t$(WHITE)Program \033[1;31m$(NAME) $(WHITE)has been compiled!$(DEF_COLOR)\n"
+	@printf "\n\t$(WHITE)Program \033[1;31mBitcoinExchange $(WHITE)has been compiled!$(DEF_CLR)\n"
 
 $(NAME)::
-	@printf "\t$(WHITE)Nothing more to be done for program \033[1;31m$(NAME)$(DEF_COLOR)\n"
+	@printf "\t$(WHITE)Nothing more to be done for program \033[1;31mBitcoinExchange$(DEF_CLR)\n"
 
 -include $(DEPS)
 
 clean:
 	@$(RM) -r $(OBJ_DIR) $(DEP_DIR)
-	@echo "$(BLUE)	Cub3D object and dependencies files cleaned.$(DEF_COLOR)"
+	@echo "$(BLUE)	BitcoinExchange objects and dependencies files cleaned.$(DEF_CLR)"
 
 fclean: 
 	@$(RM) -r $(OBJ_DIR) $(DEP_DIR) $(NAME)
-	@echo "$(WHITE)	All objects, dependencies and executables removed.$(DEF_COLOR)"
+	@echo "$(WHITE)	All objects, dependencies and executables removed.$(DEF_CLR)"
 
 re:
 	@$(MAKE) fclean
 	@$(MAKE)
-	@echo "$(GREEN)	Cleaned and rebuilt everything for $(NAME) project.$(DEF_COLOR)"
+	@echo "$(GREEN)	Cleaned and rebuilt everything for BitcoinExchange project.$(DEF_CLR)"
 
 $(OBJ_DIR)%.o: %$(EXT) $(MKFL)
 	@$(MK) $(dir $@) $(dir $(subst $(OBJ_DIR), $(DEP_DIR), $@))
