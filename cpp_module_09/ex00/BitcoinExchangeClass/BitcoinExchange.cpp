@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:24 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/05 23:09:25 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:20:58 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,55 @@ std::fstream * BitcoinExchange::openFile( std::string filename )
 
 std::map<std::string, float> BitcoinExchange::readFile( std::fstream * file )
 {
-    std::map<std::string, float> data;
-    std::string line;
-    std::string date;
-    float value;
+    std::map<std::string, float>    data;
+    std::string                     line;
+    std::string                     date;
+    size_t                          dateType = DEF;
+    std::string                     valueStr;
+    float                           value;
 
-    // First, we read the file and store the data in a map
+    // First, we read the first line
+    std::getline( *file, line );
+    if ( line != INPT_HDR )
+        throw ( BitcoinExchange::InvalidHeaderException( "Error: invalid header in file." ) );
+
+    /**
+     * Then, we read the rest of the file and store the data in a map.
+     * 
+     * The map will be used to store the date as the key and the value as the value.
+     * While reading the file, we will check if the data is valid.
+    */
     while ( std::getline( *file, line ) )
     {
+        if ( line.empty() )
+            throw ( BitcoinExchange::InvalidDataException( "Error: missinng data in file." ) );
 
-        date = line.substr( 0, line.find( DB_SEP ) );
-        if ( data.empty() && date != INPT_HDR )
+        if ( line.find( INPT_SEP ) == std::string::npos )
             throw ( BitcoinExchange::InvalidDataException( "Error: invalid data in file." ) );
-        value = std::stof( line.substr( line.find( DB_SEP ) + 1 ) );
+
+        int sepCount = std::count( line.begin(), line.end(), INPT_SEP );
+        if ( sepCount != 1 )
+            throw ( BitcoinExchange::InvalidDataException( "Error: invalid data in file." ) );
+
+        date = line.substr( 0, line.find( INPT_SEP ) );
+        valueStr = line.substr( line.find( INPT_SEP ) + 1 );
+
+        date = _trim( date );
+        valueStr = _trim( valueStr );
+
+        if ( date.empty() || !_isDate( date, &dateType ) )
+            throw ( BitcoinExchange::InvalidDataException( "Error: invalid [date] in file." ) );
+
+        if ( valueStr.empty() )
+            throw ( BitcoinExchange::InvalidDataException( "Error: invalid [value] in file." ) );
+
+        value = std::atof( valueStr.c_str() );
+
+        if ( data.find( date ) != data.end() )
+            throw ( BitcoinExchange::InvalidDataException( "Error: duplicate [date] in file." ) );
+        
         data.insert( std::pair<std::string, float>( date, value ) );
     }
-
-    // Then, we check if the content is valid
-    _parseData( data );
 
     return ( data );
 }
@@ -80,19 +111,83 @@ void BitcoinExchange::closeFile( std::fstream * file )
     return ;
 }
 
-void BitcoinExchange::_parseData( std::map<std::string, float> & data )
+// STATIC FUNCTIONS
+// ================
+
+bool BitcoinExchange::_isDate( std::string const & date, size_t * dateType )
 {
-    std::map<std::string, float>::iterator it = data.begin();
-    std::map<std::string, float>::iterator ite = data.end();
+    int     day, month, year;
+    char    sep = '-';
 
-    while ( it != ite )
+    if ( date.length() != 10 )
+        return ( false );
+
+    // Check the date type and store the values
+    size_t pos = _checkDateType( date );
+    if ( pos == 4 && ( *dateType == JAP || *dateType == DEF ) )
     {
-
-        if ( it->second < MIN_VAL || it->second > MAX_VAL )
-            throw ( BitcoinExchange::InvalidDataException( "Error: invalid data in file." ) );
-        it++;
+        *dateType = JAP;
+        if ( std::sscanf( date.c_str(), "%d%c%d%c%d", &year, &sep, &month, &sep, &day ) != 5 )
+            return ( false );
     }
-    return ;
+    else if ( pos == 2 && ( *dateType == UNI || *dateType == DEF ) )
+    {
+        *dateType = UNI;
+        if ( std::sscanf( date.c_str(), "%d%c%d%c%d", &day, &sep, &month, &sep, &year ) != 5 )
+            return ( false );
+    }
+    else
+        return ( false );
+
+    // Check if the date is valid
+    if ( day < 1 || day > 31 || month < 1 || month > 12 || year < 0 )
+        return ( false );
+
+    // Check if the date is valid for months with 31 days
+    if ( ( month == 4 || month == 6 || month == 9 || month == 11 ) && day > 30 )
+        return ( false );
+
+    // Check if the date is valid for February
+    if ( month == 2 )
+    {
+        if ( ( year % 4 == 0 && year % 100 != 0 ) || year % 400 == 0 )
+        {
+            if ( day > 29 )
+                return ( false );
+        }
+        else
+        {
+            if ( day > 28 )
+                return ( false );
+        }
+    }
+
+    return ( true );
+}
+
+size_t BitcoinExchange::_checkDateType( std::string const & date )
+{
+    size_t pos = date.find( '-' );
+    if ( pos != std::string::npos )
+        return ( pos );
+    return ( 0 );
+}
+
+std::string & BitcoinExchange::_trim( std::string & str )
+{
+    size_t firstNonSpace = str.find_first_not_of( " \t\n\r" );
+    if ( firstNonSpace != std::string::npos )
+        str = str.substr( firstNonSpace );
+    else
+        str.clear( );
+
+    size_t lastNonSpace = str.find_last_not_of( " \t\n\r" );
+    if ( lastNonSpace != std::string::npos )
+        str = str.substr( 0, lastNonSpace + 1 );
+    else
+        str.clear( );
+
+    return ( str );
 }
 
 
@@ -107,6 +202,9 @@ BitcoinExchange::FileNotOpenedException::FileNotOpenedException( std::string con
 
 BitcoinExchange::FileNotClosedException::FileNotClosedException( std::string const & message ) \
     : std::runtime_error( message ) { return ; }
+
+BitcoinExchange::InvalidHeaderException::InvalidHeaderException( std::string const & message ) \
+    : std::invalid_argument( message ) { return ; }
 
 BitcoinExchange::InvalidDataException::InvalidDataException( std::string const & message ) \
     : std::invalid_argument( message ) { return ; }

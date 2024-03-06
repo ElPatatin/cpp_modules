@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:36 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/05 23:07:34 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:20:03 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,19 @@
 # define DBP        (const std::string)"./data.csv"
 
 # define INPT_HDR   (const std::string)"date | value"
-# define INPT_SEP   (char)"|"
-# define DB_SEP     (char)","
+# define INPT_SEP   (char)'|'
+# define DB_SEP     (char)'c'
 # define NWL        (char)"\n"
 
 # define MAX_VAL   (float)1000.0f
 # define MIN_VAL   (float)0.0f
+
+enum e_date
+{
+    DEF,
+    JAP,
+    UNI
+};
 
 class BitcoinExchange
 {
@@ -76,11 +83,16 @@ class BitcoinExchange
         // MEMBER FUNCTIONS
         // ================
 
-        static void                          _parseData( std::map<std::string, float> & data );
-        // static size_t                       _isDate( std::string const & date );
-        // static size_t                       _isValue( std::string const & value );
+        static bool                         _isDate( std::string const & date, size_t * dateType );
+        static size_t                           _checkDateType( std::string const & date );
+        static bool                         _isValue( std::string const & value );
         // static bool                         _isInt( std::string const & value );
         // static bool                         _isFloat( std::string const & value );
+
+        // STATIC FUNCTIONS
+        // ================
+
+        static std::string &                _trim( std::string & str );
 
         // EXCEPTIONS
         // ==========
@@ -101,6 +113,12 @@ class BitcoinExchange
         {
             public:
                 FileNotClosedException( std::string const & message );
+        };
+
+        class InvalidHeaderException : public std::invalid_argument
+        {
+            public:
+                InvalidHeaderException( std::string const & message );
         };
 
         class InvalidDataException : public std::invalid_argument
