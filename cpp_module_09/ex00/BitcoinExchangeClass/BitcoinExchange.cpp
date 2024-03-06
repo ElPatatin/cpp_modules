@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:24 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/06 23:20:58 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/06 23:42:17 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ std::map<std::string, float> BitcoinExchange::readFile( std::fstream * file )
     std::map<std::string, float>    data;
     std::string                     line;
     std::string                     date;
-    size_t                          dateType = DEF;
     std::string                     valueStr;
     float                           value;
 
@@ -85,7 +84,7 @@ std::map<std::string, float> BitcoinExchange::readFile( std::fstream * file )
         date = _trim( date );
         valueStr = _trim( valueStr );
 
-        if ( date.empty() || !_isDate( date, &dateType ) )
+        if ( date.empty() || !_isDate( date ) )
             throw ( BitcoinExchange::InvalidDataException( "Error: invalid [date] in file." ) );
 
         if ( valueStr.empty() )
@@ -114,7 +113,7 @@ void BitcoinExchange::closeFile( std::fstream * file )
 // STATIC FUNCTIONS
 // ================
 
-bool BitcoinExchange::_isDate( std::string const & date, size_t * dateType )
+bool BitcoinExchange::_isDate( std::string const & date )
 {
     int     day, month, year;
     char    sep = '-';
@@ -123,20 +122,7 @@ bool BitcoinExchange::_isDate( std::string const & date, size_t * dateType )
         return ( false );
 
     // Check the date type and store the values
-    size_t pos = _checkDateType( date );
-    if ( pos == 4 && ( *dateType == JAP || *dateType == DEF ) )
-    {
-        *dateType = JAP;
-        if ( std::sscanf( date.c_str(), "%d%c%d%c%d", &year, &sep, &month, &sep, &day ) != 5 )
-            return ( false );
-    }
-    else if ( pos == 2 && ( *dateType == UNI || *dateType == DEF ) )
-    {
-        *dateType = UNI;
-        if ( std::sscanf( date.c_str(), "%d%c%d%c%d", &day, &sep, &month, &sep, &year ) != 5 )
-            return ( false );
-    }
-    else
+    if ( std::sscanf( date.c_str(), "%d%c%d%c%d", &year, &sep, &month, &sep, &day ) != 5 )
         return ( false );
 
     // Check if the date is valid
