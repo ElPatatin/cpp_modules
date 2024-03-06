@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:24 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/06 23:42:17 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 00:40:09 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,20 @@ std::map<std::string, float> BitcoinExchange::readFile( std::fstream * file )
     while ( std::getline( *file, line ) )
     {
         if ( line.empty() )
-            throw ( BitcoinExchange::InvalidDataException( "Error: missinng data in file." ) );
+            continue ;
 
         if ( line.find( INPT_SEP ) == std::string::npos )
-            throw ( BitcoinExchange::InvalidDataException( "Error: invalid data in file." ) );
-
+        {
+            data.insert( std::pair<std::string, float>( ERR_BAD_IPT + line, -1 ) );
+            continue ;
+        }
+            
         int sepCount = std::count( line.begin(), line.end(), INPT_SEP );
         if ( sepCount != 1 )
-            throw ( BitcoinExchange::InvalidDataException( "Error: invalid data in file." ) );
+        {
+            data.insert( std::pair<std::string, float>( ERR_BAD_IPT + line, -1 ) );
+            continue ;
+        }
 
         date = line.substr( 0, line.find( INPT_SEP ) );
         valueStr = line.substr( line.find( INPT_SEP ) + 1 );
@@ -85,16 +91,30 @@ std::map<std::string, float> BitcoinExchange::readFile( std::fstream * file )
         valueStr = _trim( valueStr );
 
         if ( date.empty() || !_isDate( date ) )
-            throw ( BitcoinExchange::InvalidDataException( "Error: invalid [date] in file." ) );
+        {
+            data.insert( std::pair<std::string, float>( ERR_BAD_IPT + date, -1 ) );
+            continue ;
+        }
 
-        if ( valueStr.empty() )
-            throw ( BitcoinExchange::InvalidDataException( "Error: invalid [value] in file." ) );
+        int status = _isValue( valueStr );
+        if ( status == e_valueError_bad )
+        {
+            data.insert( std::pair<std::string, float>( ERR_BAD_IPT + valueStr, -1 ) );
+            continue ;
+        }
+        else if ( status == e_valueError_negative )
+        {
+            data.insert( std::pair<std::string, float>( ERR_VAL_NEG, -1 ) );
+            continue ;
+        }
+        else if ( status == e_valueError_max )
+        {
+            data.insert( std::pair<std::string, float>( ERR_VAL_MAX, -1 ) );
+            continue ;
+        }
 
         value = std::atof( valueStr.c_str() );
 
-        if ( data.find( date ) != data.end() )
-            throw ( BitcoinExchange::InvalidDataException( "Error: duplicate [date] in file." ) );
-        
         data.insert( std::pair<std::string, float>( date, value ) );
     }
 
@@ -149,6 +169,54 @@ bool BitcoinExchange::_isDate( std::string const & date )
     }
 
     return ( true );
+}
+
+size_t  BitcoinExchange::_isValue( std::string const & value )
+{
+    size_t i = 0;
+    bool    dot = false;
+    std::string str = value.substr( 0, value.find( '.' ) );
+    int val;
+  
+    if ( value.empty() )
+        return ( e_valueError_bad );
+    if ( value.length() > 1 && value[i] == '-' && atof( value.c_str() ) < 0 )
+        return ( e_valueError_negative );
+    else if ( value.length() > 1 && value[i] == '+' )
+        ++i;
+    while ( i < value.length() && std::isdigit( value[i] ) )
+        ++i;
+    if ( i == value.length() )
+    {
+        val = std::atoi( value.c_str() );
+        if ( ::toString( val ) != str )
+            return ( e_valueError_max );
+        if ( val < MIN_VAL)
+            return ( e_valueError_negative );
+        if ( val > MAX_VAL )
+            return ( e_valueError_max );
+        return ( e_valueError_none );
+    }
+    if ( i < value.length() && value[i] == '.' )
+    {
+        dot = true;
+        ++i;
+    }
+    while ( i < value.length() && std::isdigit( value[i] ) )
+        ++i;
+    if ( i == value.length() && dot )
+    {
+        val = std::atoi( value.c_str() );
+        if ( ::toString( val ) != str )
+            return ( e_valueError_max );
+        if ( val < MIN_VAL)
+            return ( e_valueError_negative );
+        if ( val > MAX_VAL )
+            return ( e_valueError_max );
+        return ( e_valueError_none );
+    }
+    
+    return ( e_valueError_bad );
 }
 
 size_t BitcoinExchange::_checkDateType( std::string const & date )

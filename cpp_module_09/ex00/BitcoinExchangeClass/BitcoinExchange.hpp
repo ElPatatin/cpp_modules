@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:36 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/06 23:41:48 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 00:37:09 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <fstream>
+# include <sstream>
 # include <iomanip>
 # include <string>
 # include <map>
@@ -48,6 +49,38 @@
 # define MAX_VAL   (float)1000.0f
 # define MIN_VAL   (float)0.0f
 
+// ERROR MESSAGES
+// ==============
+
+# define ERR_BAD_FILE   (const std::string)"Error: file is corrupted."
+# define ERR_BAD_IPT    (const std::string)"Error: bad input => "
+# define ERR_BAD_HDR    (const std::string)"Error: invalid header."
+# define ERR_BAD_DATA   (const std::string)"Error: invalid data."
+# define ERR_VAL_NEG    (const std::string)"Error: not a positive number."
+# define ERR_VAL_MAX    (const std::string)"Error: too large of a number."
+
+// DATA STRUCTURES
+// ===============
+
+enum e_valueError
+{
+    e_valueError_negative,
+    e_valueError_bad,
+    e_valueError_max,
+    e_valueError_none
+};
+
+// TEMPLATE
+// ========
+
+template <typename T>
+std::string toString(T a_value)
+{
+    std::ostringstream out;
+    out << a_value;
+    return out.str();
+}
+
 class BitcoinExchange
 {
     public:
@@ -78,7 +111,7 @@ class BitcoinExchange
 
         static bool                         _isDate( std::string const & date );
         static size_t                           _checkDateType( std::string const & date );
-        static bool                         _isValue( std::string const & value );
+        static size_t                       _isValue( std::string const & value );
         // static bool                         _isInt( std::string const & value );
         // static bool                         _isFloat( std::string const & value );
 
