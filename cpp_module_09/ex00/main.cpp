@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 22:39:00 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/06 23:36:12 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:12:50 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,25 @@ int main( int ac, char **av )
         return ( 1 );
     }
     std::fstream * file = NULL;
-    std::map<std::string, float> data;
+    std::vector< std::pair<std::string, float> > data;
     try
     {
         // First, we open the file
         file = BitcoinExchange::openFile( av[1] );
-        std::cout << "File opened successfully." << std::endl;
 
         // Then, we read the file
         data = BitcoinExchange::readFile( file );
 
         // Lastly, we close the file
         BitcoinExchange::closeFile( file );
-        std::cout << "File closed successfully." << std::endl;
-        delete ( file );
+
+        data = BitcoinExchange::exchageRateCalc( data );
+        BitcoinExchange::displayData( data );
     }
     catch ( std::exception & e )
     {
         std::cerr << e.what() << std::endl;
     }
-    std::cout << "Data: " << std::endl;
-    for ( std::map<std::string, float>::iterator it = data.begin(); it != data.end(); it++ )
-        std::cout << it->first << " | " << it->second << std::endl;
+
     return ( 0 );
 }

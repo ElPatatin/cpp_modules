@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:36 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/07 00:37:09 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:34:35 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 # include <sstream>
 # include <iomanip>
 # include <string>
-# include <map>
 # include <algorithm>
+# include <vector>
+# include <limits>
+# include <cmath>
+
 
 // COLORS
 // ======
@@ -42,8 +45,9 @@
 # define DBP        (const std::string)"./data.csv"
 
 # define INPT_HDR   (const std::string)"date | value"
+# define DB_HDR     (const std::string)"date,exchange_rate"
 # define INPT_SEP   (char)'|'
-# define DB_SEP     (char)'c'
+# define DB_SEP     (char)','
 # define NWL        (char)"\n"
 
 # define MAX_VAL   (float)1000.0f
@@ -87,11 +91,11 @@ class BitcoinExchange
         // MEMBER FUNCTIONS
         // ================
 
-        static std::fstream *               openFile( std::string filename );
-        static std::map<std::string, float> readFile( std::fstream * file );
-        static void                         closeFile( std::fstream * file );
-        // static void                         addDataToDB( );
-        // static void                         displayData( );
+        static std::fstream *                               openFile( std::string filename );
+        static std::vector< std::pair<std::string, float> > readFile( std::fstream * file );
+        static void                                         closeFile( std::fstream * file );
+        static std::vector< std::pair<std::string, float> > exchageRateCalc( std::vector< std::pair<std::string, float> > data );
+        static void                                         displayData( std::vector< std::pair<std::string, float> > data );
 
     private:
         // CONSTRUCTORS AND DESTRUCTOR
@@ -109,11 +113,11 @@ class BitcoinExchange
         // MEMBER FUNCTIONS
         // ================
 
-        static bool                         _isDate( std::string const & date );
-        static size_t                           _checkDateType( std::string const & date );
-        static size_t                       _isValue( std::string const & value );
-        // static bool                         _isInt( std::string const & value );
-        // static bool                         _isFloat( std::string const & value );
+        static bool                                         _isDate( std::string const & date );
+        static size_t                                       _checkDateType( std::string const & date );
+        static size_t                                       _isValue( std::string const & value );
+        static std::vector< std::pair<std::string, float> > _readFromDB( );
+        static float                                        _getClosestExchangeRate( std::string const & date, std::vector< std::pair<std::string, float> > data );
 
         // STATIC FUNCTIONS
         // ================
@@ -152,22 +156,6 @@ class BitcoinExchange
             public:
                 InvalidDataException( std::string const & message );
         };
-
-        // class FileNotParsedException : public std::exception
-        // {
-        //     public:
-        //         FileNotParsedException( std::string const & message );
-        // };
-
-
-
-        // MEMBER ATTRIBUTES
-        // =================
-
-        bool                         _isParsed;  // true if data has been parsed
-        std::map<std::string, float> _data;      // date | value
-
-
 };
 
 #endif /* *********************************************** BITCOINEXCHANGE_HPP */

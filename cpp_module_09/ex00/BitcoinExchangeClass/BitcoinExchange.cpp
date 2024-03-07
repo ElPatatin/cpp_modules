@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:24 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/07 00:40:09 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:00:25 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ std::fstream * BitcoinExchange::openFile( std::string filename )
     return ( file );
 }
 
-std::map<std::string, float> BitcoinExchange::readFile( std::fstream * file )
+std::vector< std::pair<std::string, float> > BitcoinExchange::readFile( std::fstream * file )
 {
-    std::map<std::string, float>    data;
+    std::vector< std::pair<std::string, float> >   data;
     std::string                     line;
     std::string                     date;
     std::string                     valueStr;
@@ -73,14 +73,14 @@ std::map<std::string, float> BitcoinExchange::readFile( std::fstream * file )
 
         if ( line.find( INPT_SEP ) == std::string::npos )
         {
-            data.insert( std::pair<std::string, float>( ERR_BAD_IPT + line, -1 ) );
+            data.push_back( std::make_pair( ERR_BAD_IPT + line, -1 ) );
             continue ;
         }
             
         int sepCount = std::count( line.begin(), line.end(), INPT_SEP );
         if ( sepCount != 1 )
         {
-            data.insert( std::pair<std::string, float>( ERR_BAD_IPT + line, -1 ) );
+            data.push_back( std::make_pair( ERR_BAD_IPT + line, -1 ) );
             continue ;
         }
 
@@ -92,33 +92,72 @@ std::map<std::string, float> BitcoinExchange::readFile( std::fstream * file )
 
         if ( date.empty() || !_isDate( date ) )
         {
-            data.insert( std::pair<std::string, float>( ERR_BAD_IPT + date, -1 ) );
+            data.push_back( std::make_pair( ERR_BAD_IPT + date, -1 ) );
             continue ;
         }
 
         int status = _isValue( valueStr );
         if ( status == e_valueError_bad )
         {
-            data.insert( std::pair<std::string, float>( ERR_BAD_IPT + valueStr, -1 ) );
+            data.push_back( std::make_pair( ERR_BAD_IPT, -1 ) );
             continue ;
         }
         else if ( status == e_valueError_negative )
         {
-            data.insert( std::pair<std::string, float>( ERR_VAL_NEG, -1 ) );
+            data.push_back( std::make_pair( ERR_VAL_NEG, -1 ) );
             continue ;
         }
         else if ( status == e_valueError_max )
         {
-            data.insert( std::pair<std::string, float>( ERR_VAL_MAX, -1 ) );
+            data.push_back( std::make_pair( ERR_VAL_MAX, -1 ) );
             continue ;
         }
 
         value = std::atof( valueStr.c_str() );
 
-        data.insert( std::pair<std::string, float>( date, value ) );
+        data.push_back( std::make_pair( date, value ) );
     }
 
     return ( data );
+}
+
+std::vector< std::pair<std::string, float> >    BitcoinExchange::exchageRateCalc( std::vector< std::pair<std::string, float> > data )
+{
+    std::vector< std::pair<std::string, float> >    exchangeRate = _readFromDB( );
+    std::vector< std::pair<std::string, float> >    newData;
+    std::string                                     date;
+    float                                           value;
+    float                                           exchange;
+    
+
+    for ( size_t i = 0; i < data.size(); i++ )
+    {
+        date = data[i].first;
+        value = data[i].second;
+
+        if ( value == -1 )
+        {
+            newData.push_back( std::make_pair( date, -1 ) );
+            continue ;
+        }
+
+        exchange = _getClosestExchangeRate( date, exchangeRate );
+        newData.push_back( std::make_pair( date + " => " + toString( value ), value * exchange ) );
+
+    }
+
+    return ( newData );
+}
+
+void BitcoinExchange::displayData( std::vector< std::pair<std::string, float> > data )
+{
+    for ( size_t i = 0; i < data.size(); i++ )
+    {
+        if ( data[i].second == -1 )
+            std::cout << data[i].first << std::endl;
+        else
+            std::cout << data[i].first << " | " << data[i].second << std::endl;
+    }
 }
 
 void BitcoinExchange::closeFile( std::fstream * file )
@@ -217,6 +256,73 @@ size_t  BitcoinExchange::_isValue( std::string const & value )
     }
     
     return ( e_valueError_bad );
+}
+
+std::vector< std::pair<std::string, float> > BitcoinExchange::_readFromDB( )
+{
+    std::vector< std::pair<std::string, float> > data;
+    std::fstream *file = openFile( DBP );
+    std::string line;
+    std::string date;
+    std::string valueStr;
+    float value;
+
+    // First, we read the first line
+    std::getline( *file, line );
+    if ( line != DB_HDR )
+        throw ( BitcoinExchange::InvalidHeaderException( "Error: invalid header in file." ) );
+    
+    while ( std::getline( *file, line ) )
+    {
+        if ( line.empty() )
+            continue ;
+        
+        date = line.substr( 0, line.find( DB_SEP ) );
+        valueStr = line.substr( line.find( DB_SEP ) + 1 );
+
+        date = _trim( date );
+        valueStr = _trim( valueStr );
+        value = std::atof( valueStr.c_str() );
+
+        data.push_back( std::make_pair( date, value ) );
+    }
+
+    closeFile( file );
+
+    return ( data );
+}
+
+float BitcoinExchange::_getClosestExchangeRate( std::string const & date, std::vector< std::pair<std::string, float> > exchangeRate )
+{
+    int day = std::atoi( date.substr( 8, 2 ).c_str() );
+    int month = std::atoi( date.substr( 5, 2 ).c_str() );
+    int year = std::atoi( date.substr( 0, 4 ).c_str() );
+
+    int diff;
+    int minDiff = std::numeric_limits<int>::max();
+    float  rate = 0;
+
+    for ( int i = 0; i < static_cast<int>( exchangeRate.size() ); i++ )
+    {
+        diff = std::abs( day - std::atoi( exchangeRate[i].first.substr( 8, 2 ).c_str() ) ) + \
+               std::abs( month - std::atoi( exchangeRate[i].first.substr( 5, 2 ).c_str() ) ) + \
+               std::abs( year - std::atoi( exchangeRate[i].first.substr( 0, 4 ).c_str() ) );
+
+        if ( diff <= minDiff  )
+        {
+            std::cout << "Diff: " << diff << "; minDiff: " << minDiff << "; rate: " << exchangeRate[i].second << "; date: " << exchangeRate[i].first << std::endl;
+            rate = exchangeRate[i].second;
+
+            if ( minDiff == 1 )
+                return ( rate );
+            minDiff = diff;
+            std::cout << "Date " << date << "; rate: " << rate << " on date: " << exchangeRate[i].first << std::endl;
+
+        }
+
+    }
+
+    return ( rate );
 }
 
 size_t BitcoinExchange::_checkDateType( std::string const & date )
