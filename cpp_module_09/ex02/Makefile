@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+         #
+#    By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 12:37:08 by cpeset-c          #+#    #+#              #
-#    Updated: 2024/03/04 13:14:45 by cpeset-c         ###   ########.fr        #
+#    Updated: 2024/03/07 17:29:48 by cpeset-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,8 @@ CP		= cp -f
 OBJ_DIR	:= .objs/
 DEP_DIR	:= .deps/
 
-# Span Class Folder
-SPN_DIR	:= ./SpanClass/
+# PmergeMe Class Directory
+PMG_DIR	:= ./PmergeMeClass/
 
 # -=-=-=-=-	FILE -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
@@ -87,16 +87,16 @@ ifeq ($(LANG), C++)
 	EXT	:= .cpp
 endif
 
-INCLUDE	:= -I./$(SPN_DIR)
+INCLUDE	:= -I./$(PMG_DIR)
 
 # -----------------------------  SOURCE FILES  -------------------------------- #
 
-# Span Class Files
-SPN_FLS	:= Span.cpp
+# PmergeMe Class Files
+PMG_FLS	:= PmergeMe.cpp
 
 # -----------------------------  MAIN FILES  ---------------------------------- #
 SRCS	+= ./main.cpp
-SRCS	+= $(addprefix $(SPN_DIR), $(SPN_FLS))
+SRCS	+= $(addprefix $(PMG_DIR), $(PMG_FLS))
 
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:$(EXT)=.o))
 DEPS	= $(addprefix $(DEP_DIR), $(addsuffix .d, $(basename $(SRCS))))
