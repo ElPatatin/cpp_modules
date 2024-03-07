@@ -6,17 +6,19 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:21:33 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/07 16:58:09 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:38:24 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RPN_HPP
 # define RPN_HPP
 
-#include <iostream>
-#include <string>
-#include <stack>
-#include <cmath>
+# include <iostream>
+# include <string>
+# include <stack>
+# include <cmath>
+# include <limits>
+# include <exception>
 
 // COLORS
 // ======

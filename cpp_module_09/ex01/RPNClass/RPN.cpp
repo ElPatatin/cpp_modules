@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:21:22 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/07 17:13:49 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 17:46:14 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ std::stack< int >    RPN::calculateRPN( std::string rpn )
     std::string         number;
     int                 i = -1;
 
+    
     while ( rpn[++i] )
     {
         if ( rpn[i] == ' ' )
@@ -68,6 +69,9 @@ std::stack< int >    RPN::calculateRPN( std::string rpn )
     if ( !_isOperator( rpn[i - 1] ) )
         throw ( RPN::InvalidExpression( BAD_FORMAT ) );
 
+    if ( rpnStack.size() != 1 )
+        throw ( RPN::InvalidExpression( BAD_FORMAT ) );
+
     return ( rpnStack );
 }
 
@@ -86,20 +90,42 @@ bool    RPN::_isNumber( char c )
 
 int     RPN::_doOperation( int a, int b, char op )
 {
-    switch ( op )
-    {
-        case '+':
-            return ( a + b );
+switch (op)
+{
+    case '+':
+        if ( ( b > 0 && a > std::numeric_limits< int >::max( ) - b )
+            || ( b < 0 && a < std::numeric_limits< int >::min( ) - b ) )
+        {
+            throw ( std::overflow_error("Overflow during addition") );
+        }
+        return ( a + b );
+
         case '-':
+            if ( ( b > 0 && a < std::numeric_limits< int >::min( ) + b )
+                || ( b < 0 && a > std::numeric_limits< int >::max( ) + b ) )
+            {
+                throw ( std::overflow_error("Overflow during subtraction") );
+            }
             return ( a - b );
+
         case '*':
-            return ( a * b );
+            if ( a != 0 && b != 0
+                && ( ( a > 0 && b > std::numeric_limits< int >::max( ) / a )
+                || ( a < 0 && b < std::numeric_limits< int >::max( ) / a ) ) )
+            {
+                throw ( std::overflow_error( "Overflow during multiplication" ) );
+            }
+            return ( a * b ); 
+
         case '/':
             if ( b == 0 )
-                throw ( RPN::InvalidExpression( DIV_ZERO ) );
-            return ( a / b );
+                throw ( std::overflow_error("Division by zero") );
+            if ( a == std::numeric_limits< int >::min( ) && b == -1 )
+                throw ( std::overflow_error("Overflow during division") );
+        return ( a / b );
+
         default:
-            throw ( RPN::InvalidExpression( INVALID_OP ) );
+            throw ( std::invalid_argument("Invalid operator") );
     }
 }
 
