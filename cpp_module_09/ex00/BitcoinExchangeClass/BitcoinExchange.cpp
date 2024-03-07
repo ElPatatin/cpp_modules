@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:24 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/07 14:00:25 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:15:40 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void BitcoinExchange::displayData( std::vector< std::pair<std::string, float> > 
         if ( data[i].second == -1 )
             std::cout << data[i].first << std::endl;
         else
-            std::cout << data[i].first << " | " << data[i].second << std::endl;
+            std::cout << data[i].first << " = " << data[i].second << std::endl;
     }
 }
 
@@ -294,32 +294,30 @@ std::vector< std::pair<std::string, float> > BitcoinExchange::_readFromDB( )
 
 float BitcoinExchange::_getClosestExchangeRate( std::string const & date, std::vector< std::pair<std::string, float> > exchangeRate )
 {
-    int day = std::atoi( date.substr( 8, 2 ).c_str() );
-    int month = std::atoi( date.substr( 5, 2 ).c_str() );
-    int year = std::atoi( date.substr( 0, 4 ).c_str() );
+    int     day = std::atoi( date.substr( 8, 2 ).c_str() );
+    int     month = std::atoi( date.substr( 5, 2 ).c_str() );
+    int     year = std::atoi( date.substr( 0, 4 ).c_str() );
 
-    int diff;
-    int minDiff = std::numeric_limits<int>::max();
-    float  rate = 0;
+    int     diff;
+    int     minDiff = std::numeric_limits<int>::max();
+    float   rate = 0;
 
+    int     currDay;
+    int     currMonth;
+    int     currYear;
     for ( int i = 0; i < static_cast<int>( exchangeRate.size() ); i++ )
     {
-        diff = std::abs( day - std::atoi( exchangeRate[i].first.substr( 8, 2 ).c_str() ) ) + \
-               std::abs( month - std::atoi( exchangeRate[i].first.substr( 5, 2 ).c_str() ) ) + \
-               std::abs( year - std::atoi( exchangeRate[i].first.substr( 0, 4 ).c_str() ) );
+        currDay = std::atoi( exchangeRate[i].first.substr( 8, 2 ).c_str( ) );
+        currMonth = std::atoi( exchangeRate[i].first.substr( 5, 2 ).c_str( ) );
+        currYear = std::atoi( exchangeRate[i].first.substr( 0, 4 ).c_str( ) );
 
-        if ( diff <= minDiff  )
+        diff = ( year - currYear ) * 365 + ( month - currMonth ) * 30 + ( day - currDay );
+
+        if ( diff >= 0 && diff < minDiff )
         {
-            std::cout << "Diff: " << diff << "; minDiff: " << minDiff << "; rate: " << exchangeRate[i].second << "; date: " << exchangeRate[i].first << std::endl;
             rate = exchangeRate[i].second;
-
-            if ( minDiff == 1 )
-                return ( rate );
             minDiff = diff;
-            std::cout << "Date " << date << "; rate: " << rate << " on date: " << exchangeRate[i].first << std::endl;
-
         }
-
     }
 
     return ( rate );
