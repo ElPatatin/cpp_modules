@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:21:29 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/08 14:27:48 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/08 20:07:03 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PMERGEME_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <sstream>
 # include <exception>
@@ -61,7 +62,7 @@ class PmergeMe
         static void             parse( int ac, char **av );
         static std::deque<int>  createDeque( int ac, char **av );
         static std::list<int>   createList( int ac, char **av );
-        static void             merge( std::deque<int> & deque, std::list<int> & list );
+        static void             merge( std::deque<int> & deque, std::list<int> & list, int ac, char **av );
 
     private:
         // CONSTRUCTORS AND DESTRUCTOR
@@ -90,7 +91,12 @@ class PmergeMe
         // MERGING
 
         static void         _mergeLists( std::list<int> & list );
+        static std::list<int>
+                            _mergeInsertionSortList( std::list<int> & list);
         static void         _mergeDeques( std::deque<int> & deque );
+        static std::deque<int>
+                            _mergeInsertionSortDeque( std::deque<int> & deque );
+        // static void         _mergeInsertionSortDeque( std::deque<int> & deque );
 
         // PRINTING
 
@@ -104,6 +110,18 @@ class PmergeMe
         {
             public:
                 InvalidInputException( std::string const & message );
+        };
+
+        class DequeNotSorted : public std::invalid_argument
+        {
+            public:
+                DequeNotSorted( std::string const & message );
+        };
+
+        class ListNotSorted : public std::invalid_argument
+        {
+            public:
+                ListNotSorted( std::string const & message );
         };
 
 };

@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:16:36 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/08 14:30:07 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:53:26 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int main( int ac, char **av )
         std::deque<int> deque = PmergeMe::createDeque( ac, av );
         std::list<int> list = PmergeMe::createList( ac, av );
 
-        PmergeMe::merge( deque, list );
+        PmergeMe::merge( deque, list, ac, av );
     }
     catch ( std::exception & e )
     {
-        std::cout << RED << "Error: " << e.what() << DEFAULT << std::endl;
+        std::cout << RED << e.what() << DEFAULT << std::endl;
         return ( 1 );
     }
     return ( 0 );

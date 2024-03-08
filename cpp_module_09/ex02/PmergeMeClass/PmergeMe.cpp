@@ -6,7 +6,7 @@
 /*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:21:47 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/08 14:30:40 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/08 20:42:19 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void PmergeMe::parse( int ac, char **av )
     if ( _isRepeated( av ) )
         throw ( std::invalid_argument( "Error: repeated input" ) );
     if ( _isSorted( av ) )
-        throw ( std::invalid_argument( "Error: input is already sorted" ) );
+        throw ( std::invalid_argument( "Input is already sorted" ) );
 }
 
 std::deque<int> PmergeMe::createDeque( int ac, char **av )
@@ -63,10 +63,44 @@ std::list<int> PmergeMe::createList( int ac, char **av )
     return ( list );
 }
 
-void PmergeMe::merge( std::deque<int> & deque, std::list<int> & list )
+void PmergeMe::merge( std::deque<int> & deque, std::list<int> & list, int ac, char **av )
 {
+    std::clock_t    dequeTime[2];
+    std::clock_t    listTime[2];
+
+    dequeTime[0] = std::clock( );
     _mergeDeques( deque );
+    dequeTime[1] = std::clock( );
+
+    listTime[0] = std::clock( );
     _mergeLists( list );
+    listTime[1] = std::clock( );
+
+    std::cout << "Before: " << std::endl;
+    for ( int i = 1; i < ac; ++i )
+        std::cout << av[i] << " ";
+    std::cout << std::endl;
+
+    _printDeque( deque );
+    _printList( list );
+
+    // Check if deques and lists are sorted
+    for ( std::deque<int>::iterator it = deque.begin(); it != deque.end(); ++it )
+    {
+        if ( it + 1 != deque.end() && *it > *(it + 1) )
+            throw ( PmergeMe::DequeNotSorted( "Error: deque not sorted" ) );
+    }
+
+    for ( std::list<int>::iterator it = list.begin(); it != list.end(); ++it )
+    {
+        if ( it != --list.end() && *it > *(++it) )
+            throw ( PmergeMe::ListNotSorted( "Error: list not sorted" ) );
+    }
+
+    double timeDeque = ( static_cast<double>(dequeTime[1] - dequeTime[0]) / CLOCKS_PER_SEC ) * 1000000;
+    double timeList = ( static_cast<double>(listTime[1] - listTime[0]) / CLOCKS_PER_SEC ) * 1000000;
+    std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque: " << timeDeque << " us" << std::endl;
+    std::cout << "Time to process a range of " << ac - 1 << " elements with std::list: " << timeList << " us" << std::endl;
 }
 
 // STATIC MEMBER FUNCTIONS
@@ -133,30 +167,123 @@ bool    PmergeMe::_isSorted( char **av )
 
 void    PmergeMe::_mergeLists( std::list<int> & list )
 {
-    std::cout << "List before merge: ";
-    _printList( list );
+    list = _mergeInsertionSortList( list );
+}
 
-    list.sort();
+// MERGE INSERTION ALGORITHM FJMI(Ford-Johnson algorithm) for lists
+std::list<int>  PmergeMe::_mergeInsertionSortList( std::list<int> & list )
+{
+    if ( list.size( ) <= 1 )
+        return ( list ) ;
 
-    std::cout << "List after merge: ";
-    _printList( list );
+    std::list<int> left;
+    std::list<int> right;
+    std::list<int> sorted;
+
+    size_t i = 0;
+    for ( std::list<int>::const_iterator it = list.begin(); it != list.end(); ++it )
+    {
+        if ( i < list.size( ) / 2 )
+            left.push_back(*it);
+        else
+            right.push_back(*it);
+        ++i;
+    }
+
+    left = _mergeInsertionSortList(left);
+    right = _mergeInsertionSortList(right);
+
+    while ( !left.empty( ) && !right.empty( ) )
+    {
+        if ( left.front( ) < right.front( ) )
+        {
+            sorted.push_back( left.front( ) );
+            left.pop_front( );
+        }
+        else
+        {
+            sorted.push_back( right.front( ) );
+            right.pop_front( );
+        }
+    }
+
+    while ( !left.empty( ) )
+    {
+        sorted.push_back( left.front( ) );
+        left.pop_front( );
+    }
+
+    while ( !right.empty( ) )
+    {
+        sorted.push_back( right.front( ) );
+        right.pop_front( );
+    }
+
+    return ( sorted );
 }
 
 void    PmergeMe::_mergeDeques( std::deque<int> & deque )
 {
-    std::cout << "Deque before merge: ";
-    _printDeque( deque );
+    deque = _mergeInsertionSortDeque( deque );
+}
 
-    std::sort( deque.begin(), deque.end() );
+// MERGE INSERTION ALGORITHM FJMI(Ford-Johnson algorithm) for deques
+std::deque<int> PmergeMe::_mergeInsertionSortDeque( std::deque<int> & deque )
+{
+    if ( deque.size( ) <= 1 )
+        return ( deque );
 
-    std::cout << "Deque after merge: ";
-    _printDeque( deque );
+    std::deque<int> left;
+    std::deque<int> right;
+    std::deque<int> sorted;
+
+    size_t i = 0;
+    for ( std::deque<int>::const_iterator it = deque.begin(); it != deque.end(); ++it )
+    {
+        if ( i < deque.size( ) / 2 )
+            left.push_back(*it);
+        else
+            right.push_back(*it);
+        ++i;
+    }
+
+    left = _mergeInsertionSortDeque(left);
+    right = _mergeInsertionSortDeque(right);
+
+    while ( !left.empty( ) && !right.empty( ) )
+    {
+        if ( left.front( ) < right.front( ) )
+        {
+            sorted.push_back( left.front( ) );
+            left.pop_front( );
+        }
+        else
+        {
+            sorted.push_back( right.front( ) );
+            right.pop_front( );
+        }
+    }
+
+    while ( !left.empty( ) )
+    {
+        sorted.push_back( left.front( ) );
+        left.pop_front( );
+    }
+
+    while ( !right.empty( ) )
+    {
+        sorted.push_back( right.front( ) );
+        right.pop_front( );
+    }
+
+    return ( sorted );
 }
 
 // PRINTING
 
 void    PmergeMe::_printDeque( std::deque<int> & deque )
 {
+    std::cout << "Deque after merge: ";
     for ( std::deque<int>::iterator it = deque.begin(); it != deque.end(); ++it )
         std::cout << *it << " ";
     std::cout << std::endl;
@@ -164,6 +291,7 @@ void    PmergeMe::_printDeque( std::deque<int> & deque )
 
 void    PmergeMe::_printList( std::list<int> & list )
 {
+    std::cout << "List after merge: ";
     for ( std::list<int>::iterator it = list.begin(); it != list.end(); ++it )
         std::cout << *it << " ";
     std::cout << std::endl;
@@ -173,4 +301,10 @@ void    PmergeMe::_printList( std::list<int> & list )
 // ==========
 
 PmergeMe::InvalidInputException::InvalidInputException( std::string const & message ) \
+    : std::invalid_argument( RED + message + DEFAULT ) { return ; }
+
+PmergeMe::DequeNotSorted::DequeNotSorted( std::string const & message ) \
+    : std::invalid_argument( RED + message + DEFAULT ) { return ; }
+
+PmergeMe::ListNotSorted::ListNotSorted( std::string const & message ) \
     : std::invalid_argument( RED + message + DEFAULT ) { return ; }

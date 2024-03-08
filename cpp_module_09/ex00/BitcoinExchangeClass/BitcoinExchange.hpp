@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:36 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/07 13:34:35 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/08 20:56:40 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@
 # define ERR_BAD_DATA   (const std::string)"Error: invalid data."
 # define ERR_VAL_NEG    (const std::string)"Error: not a positive number."
 # define ERR_VAL_MAX    (const std::string)"Error: too large of a number."
+# define ERR_VAL_NONE   (const std::string)"Error: no date found."
 
 // DATA STRUCTURES
 // ===============

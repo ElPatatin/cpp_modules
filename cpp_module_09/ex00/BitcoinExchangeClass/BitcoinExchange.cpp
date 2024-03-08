@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpeset-c <cpeset-c@student.42barce.com>    +#+  +:+       +#+        */
+/*   By: cpeset-c <cpeset-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:12:24 by cpeset-c          #+#    #+#             */
-/*   Updated: 2024/03/07 14:15:40 by cpeset-c         ###   ########.fr       */
+/*   Updated: 2024/03/08 20:57:05 by cpeset-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ std::fstream * BitcoinExchange::openFile( std::string filename )
 {
     std::fstream * file = new std::fstream;
 
-    file->open( filename.c_str(),  std::ios::in | std::ios::out | std::ios::app );
+    file->open( filename.c_str() );
     if ( !file->is_open() )
     {
         delete ( file );
@@ -57,8 +57,6 @@ std::vector< std::pair<std::string, float> > BitcoinExchange::readFile( std::fst
 
     // First, we read the first line
     std::getline( *file, line );
-    if ( line != INPT_HDR )
-        throw ( BitcoinExchange::InvalidHeaderException( "Error: invalid header in file." ) );
 
     /**
      * Then, we read the rest of the file and store the data in a map.
@@ -142,6 +140,12 @@ std::vector< std::pair<std::string, float> >    BitcoinExchange::exchageRateCalc
         }
 
         exchange = _getClosestExchangeRate( date, exchangeRate );
+        if ( exchange == -1 )
+        {
+            newData.push_back( std::make_pair( ERR_VAL_NONE, -1 ) );
+            continue ;
+        }
+
         newData.push_back( std::make_pair( date + " => " + toString( value ), value * exchange ) );
 
     }
@@ -269,8 +273,6 @@ std::vector< std::pair<std::string, float> > BitcoinExchange::_readFromDB( )
 
     // First, we read the first line
     std::getline( *file, line );
-    if ( line != DB_HDR )
-        throw ( BitcoinExchange::InvalidHeaderException( "Error: invalid header in file." ) );
     
     while ( std::getline( *file, line ) )
     {
@@ -300,7 +302,7 @@ float BitcoinExchange::_getClosestExchangeRate( std::string const & date, std::v
 
     int     diff;
     int     minDiff = std::numeric_limits<int>::max();
-    float   rate = 0;
+    float   rate = -1;
 
     int     currDay;
     int     currMonth;
