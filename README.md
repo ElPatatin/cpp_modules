@@ -38,7 +38,47 @@ Navigate through each exercise and follow the instructions provided in the respe
 
 ## Exercise Structure
 
-The exercises are organized into separate directories, each focusing on a specific C++ concept. Follow the README files within each module for instructions and tasks.
+The exercises are organized into separate directories, each focusing on a specific C++ concept. Here's an example structure for modules 00 to 09:
+
+- **Module 00 - Basics**
+    - Basic syntax and variable types
+    - Simple input/output operations
+
+- **Module 01 - Pointers, References, and Memory Allocation in C++**
+    - Pointers and references usage
+    - Dynamic memory allocation and deallocation
+
+- **Module 02 - Object-Oriented Programming (OOP) Basics & Orthodox Canonical Form Implementation**
+    - Classes and objects
+    - Implementation of the Orthodox Canonical Form (Rule of Three/Five)
+
+- **Module 03 - Inheritance & the Diamond Problem**
+    - Understanding and working with inheritance in C++
+    - Addressing the Diamond Problem in multiple inheritance
+
+- **Module 04 - Polymorphism & Interfaces**
+    - Implementation and usage of polymorphism in C++
+    - Creating and utilizing interfaces
+
+- **Module 05 - Error Handling & Exceptions**
+    - Understanding and implementing exception handling mechanisms
+    - Dealing with error codes and logging in C++
+
+- **Module 06 - Casts**
+    - Exploring different types of type casts in C++
+    - Type casting and conversion techniques
+
+- **Module 07 - Templates**
+    - Introduction to C++ templates
+    - Advanced template concepts and metaprogramming
+
+- **Module 08 - Templated containers, iterators, algorithms**
+    - Overview and usage of templated containers in C++
+    - Working with iterators and algorithms on templated containers
+
+- **Module 09 - STL Containers**
+    - In-depth exploration of C++ STL containers
+    - Integration of learned concepts in a final project with best practices and project structure
 
 ## Controls
 
