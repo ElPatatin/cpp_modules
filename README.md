@@ -40,43 +40,43 @@ Navigate through each exercise and follow the instructions provided in the respe
 
 The exercises are organized into separate directories, each focusing on a specific C++ concept. Here's an example structure for modules 00 to 09:
 
-- **Module 00 - Basics**
+- [**Module 00 - Basics**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_00)
     - Basic syntax and variable types
     - Simple input/output operations
 
-- **Module 01 - Pointers, References, and Memory Allocation in C++**
+- [**Module 01 - Pointers, References, and Memory Allocation in C++**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_01)
     - Pointers and references usage
     - Dynamic memory allocation and deallocation
 
-- **Module 02 - Object-Oriented Programming (OOP) Basics & Orthodox Canonical Form Implementation**
+- [**Module 02 - Object-Oriented Programming (OOP) Basics & Orthodox Canonical Form Implementation**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_02)
     - Classes and objects
     - Implementation of the Orthodox Canonical Form (Rule of Three/Five)
 
-- **Module 03 - Inheritance & the Diamond Problem**
+- [**Module 03 - Inheritance & the Diamond Problem**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_03)
     - Understanding and working with inheritance in C++
     - Addressing the Diamond Problem in multiple inheritance
 
-- **Module 04 - Polymorphism & Interfaces**
+- [**Module 04 - Polymorphism & Interfaces**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_04)
     - Implementation and usage of polymorphism in C++
     - Creating and utilizing interfaces
 
-- **Module 05 - Error Handling & Exceptions**
+- [**Module 05 - Error Handling & Exceptions**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_05)
     - Understanding and implementing exception handling mechanisms
     - Dealing with error codes and logging in C++
 
-- **Module 06 - Casts**
+- [**Module 06 - Casts**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_06)
     - Exploring different types of type casts in C++
     - Type casting and conversion techniques
 
-- **Module 07 - Templates**
+- [**Module 07 - Templates**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_07)
     - Introduction to C++ templates
     - Advanced template concepts and metaprogramming
 
-- **Module 08 - Templated containers, iterators, algorithms**
+- [**Module 08 - Templated containers, iterators, algorithms**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_08)
     - Overview and usage of templated containers in C++
     - Working with iterators and algorithms on templated containers
 
-- **Module 09 - STL Containers**
+- [**Module 09 - STL Containers**](https://github.com/ElPatatin/Cpp_modules/tree/main/cpp_module_09)
     - In-depth exploration of C++ STL containers
     - Integration of learned concepts in a final project with best practices and project structure
 
