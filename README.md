@@ -80,10 +80,6 @@ The exercises are organized into separate directories, each focusing on a specif
     - In-depth exploration of C++ STL containers
     - Integration of learned concepts in a final project with best practices and project structure
 
-## Controls
-
-Feel free to explore and modify the provided code within each exercise to experiment and deepen your understanding of C++.
-
 ## Known Issues
 
 If you encounter any issues or have questions, please open an issue on the repository.
